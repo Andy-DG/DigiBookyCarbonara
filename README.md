@@ -179,7 +179,7 @@ As a Librarian I want to update an existing book, so I can correct mistakes that
 
 ### Story 10C: Delete a book
 As a Librarian I want to delete an existing book, so I can restrict members from borrowing books we no longer have.
-- Books should be soft-deleted. (Not sure what soft-delete means? Google or ask!)
+- books should be soft-deleted. (Not sure what soft-delete means? Google or ask!)
 - These books should no longer show up in any result!
 - These books can no longer be borrowed!
 - These books can be updated, they can be restored (un-deleted).
