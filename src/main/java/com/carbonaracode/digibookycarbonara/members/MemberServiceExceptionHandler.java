@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @ControllerAdvice
-public class MemberServiceExceptionHandler extends ExceptionHandlerExceptionResolver {
+public class MemberServiceExceptionHandler  {
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
     @ExceptionHandler(IllegalArgumentException.class)
