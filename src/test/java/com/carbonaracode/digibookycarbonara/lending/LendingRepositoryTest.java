@@ -7,7 +7,12 @@ import com.carbonaracode.digibookycarbonara.books.BookRepository;
 import com.carbonaracode.digibookycarbonara.books.LentBook;
 import com.carbonaracode.digibookycarbonara.members.Address;
 import com.carbonaracode.digibookycarbonara.members.Member;
+import com.carbonaracode.digibookycarbonara.members.MemberRepository;
+import com.carbonaracode.digibookycarbonara.members.MemberService;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,14 +23,14 @@ class LendingRepositoryTest {
         Member member = Member.newBuilder()
                 .withInss("666")
                 .withName(new Name("Pablo", "Ijscobar"))
-                .withEmail(null)
+                .withEmail("boergor@king.nl")
                 .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
                 .build();
 
         Book book = Book.newBuilder()
                 .withIsbn("978-1-4028-9462-6")
                 .withTitle("The Phoenix Project")
-                .withAuthor(new Author(new Name("Gene", "Kim")))
+                .withAuthor(new Author("Gene Kim"))
                 .withSummary("Bill is an IT manager at Parts Unlimited. " +
                         "It's Tuesday morning and on his drive into the office, Bill gets a call from the CEO.\n" +
                         "\n" +
@@ -34,15 +39,24 @@ class LendingRepositoryTest {
                         "The CEO wants Bill to report directly to him and fix the mess in ninety days " +
                         "or else Bill's entire department will be outsourced.\n")
                 .build();
-        LendingSystem lendingSystem = new LendingSystem();
+
+        MemberRepository memberRepository = new MemberRepository();
+            memberRepository.register(member);
+        BookRepository bookRepository = new BookRepository();
+        bookRepository.addBook(book);
         LendingRepository lendingRepository = new LendingRepository();
 
+        LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
+
         //When
-        lendingSystem.lend(book.getIsbn(),member.getInss());
+        LentBook lentBook = lendingSystem.lend(book.getIsbn(), member.getInss());
 
 
         //Then
-        assertTrue(lendingRepository.getLendingMap().values().contains()
+        Map<Member, List<LentBook>> lendingMap = lendingRepository.getLendingMap();
+        List<LentBook> lentBooks = lendingMap.get(member);
+        boolean contains = lentBooks.contains(lentBook);
 
+        assertTrue(contains);
     }
 }

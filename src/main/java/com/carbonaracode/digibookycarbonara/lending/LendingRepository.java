@@ -4,6 +4,7 @@ import com.carbonaracode.digibookycarbonara.books.LentBook;
 import com.carbonaracode.digibookycarbonara.members.Member;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,5 +20,16 @@ public class LendingRepository {
 
     public Map<Member, List<LentBook>> getLendingMap() {
         return lendingMap;
+    }
+
+    public LentBook addLentBook(Member member, LentBook lentBook){
+        if(this.lendingMap.containsKey(member)){
+            this.lendingMap.get(member).add(lentBook);
+        } else {
+            this.lendingMap.put(member, new ArrayList<>());
+            this.lendingMap.get(member).add(lentBook);
+        }
+
+        return lentBook;
     }
 }
