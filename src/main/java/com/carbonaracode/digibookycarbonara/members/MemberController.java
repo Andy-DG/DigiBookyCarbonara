@@ -3,8 +3,8 @@ package com.carbonaracode.digibookycarbonara.members;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("member")
-@CrossOrigin("http:localhost:4200")
+@RequestMapping("members")
+@CrossOrigin("http://localhost:4200")
 public class MemberController {
     MemberService memberService;
 
