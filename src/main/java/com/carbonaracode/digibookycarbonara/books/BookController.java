@@ -2,10 +2,8 @@ package com.carbonaracode.digibookycarbonara.books;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,12 @@ public class BookController {
     @GetMapping(produces = "application/json")
     public List<BookDTO> getAllBooks() {
         return bookService.getAllBooks();
+    }
+
+
+    @GetMapping(path = "/{id}", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public BookDTO getBookDetailById(@PathVariable String id){
+        return this.bookService.getBookById(id);
     }
 }

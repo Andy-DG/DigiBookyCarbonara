@@ -3,6 +3,7 @@ package com.carbonaracode.digibookycarbonara.books;
 import com.carbonaracode.digibookycarbonara.Name;
 import org.springframework.stereotype.Repository;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,4 +42,18 @@ public class BookRepository {
         return bookMap.values().stream().toList();
     }
 
+    public Book getBookById(String id) {
+        checkNotNull(id);
+        checkInMap(id);
+
+        return this.bookMap.get(id);
+    }
+
+    private void checkInMap(String id) {
+        if(!this.bookMap.containsKey(id)) throw new IllegalArgumentException("No book with called isbn found");
+    }
+
+    private void checkNotNull(String id) {
+        if(id == null || id.isBlank()) throw new IllegalArgumentException("id cannot be blank or null");
+    }
 }
