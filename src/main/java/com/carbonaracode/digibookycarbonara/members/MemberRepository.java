@@ -15,12 +15,12 @@ public class MemberRepository {
         return memberMap;
     }
 
-    public Member register(Member member) throws IllegalArgumentException {
+    public void register(Member member) throws IllegalArgumentException {
         isNotNull(member);
         validateInss(member);
         validateEmail(member);
         memberMap.put(member.getInss(),member);
-        return member;
+
     }
 
     private void validateEmail(Member member) {
