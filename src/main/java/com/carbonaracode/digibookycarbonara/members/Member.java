@@ -1,5 +1,8 @@
 package com.carbonaracode.digibookycarbonara.members;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Member {
 //This member should have a unique INSS (social security number), last name, first name, email, street name, street number,
 // postal code and city.
@@ -9,10 +12,19 @@ public class Member {
     private final Address address;
 
     public Member(String inss, Name name, String email, Address address) {
+        validateEmail(email);
         this.inss = inss;
         this.name = name;
         this.email = email;
         this.address = address;
+    }
+
+    private void validateEmail(String email) throws IllegalArgumentException {
+        Pattern pattern = Pattern.compile( "^(.+)@(.+)$");
+        Matcher matcher = pattern.matcher(email);
+        if (!matcher.matches()){
+            throw new IllegalArgumentException("invalid e-mail format");
+        }
     }
 
     public String getInss() {
@@ -30,4 +42,6 @@ public class Member {
     public Address getAddress() {
         return address;
     }
+
+
 }
