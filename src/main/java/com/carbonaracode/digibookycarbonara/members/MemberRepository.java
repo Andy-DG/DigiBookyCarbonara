@@ -1,10 +1,15 @@
 package com.carbonaracode.digibookycarbonara.members;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Logger;
 
+@Repository
 public class MemberRepository {
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private Map<String, Member> memberMap;
 
     public MemberRepository() {
@@ -20,7 +25,7 @@ public class MemberRepository {
         validateInss(member);
         validateEmail(member);
         memberMap.put(member.getInss(),member);
-
+        logger.info( member + " is registered.");
     }
 
     private void validateEmail(Member member) {
