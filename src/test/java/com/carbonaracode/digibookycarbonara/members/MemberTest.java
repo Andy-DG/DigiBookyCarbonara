@@ -17,4 +17,17 @@ class MemberTest {
                 new Address("Buildstreet", 1, 1, "Buildtown")));
 
     }
+
+    @Test
+    void givenAnEmailAdress_whenCreatingAMember_ThenEverythingIsOk() {
+        //Given
+        String email = "bob.builder@building.build";
+        //When
+        Member bob = new Member("1", new Name("Bob", "Builder"),
+                email,
+                new Address("Buildstreet", 1, 1, "Buildtown"));
+
+        //Then
+        assertEquals(bob.getEmail(), email);
+    }
 }
