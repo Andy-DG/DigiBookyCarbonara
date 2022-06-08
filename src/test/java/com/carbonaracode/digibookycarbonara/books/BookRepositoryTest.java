@@ -36,5 +36,4 @@ class BookRepositoryTest {
         //then
         Assertions.assertEquals(List.of(book1), actualResult);
     }
-
 }
