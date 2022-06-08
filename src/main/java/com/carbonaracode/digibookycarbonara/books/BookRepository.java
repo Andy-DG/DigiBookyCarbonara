@@ -1,10 +1,13 @@
 package com.carbonaracode.digibookycarbonara.books;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public class BookRepository {
     private Map<String, Book> books;
 
@@ -12,9 +15,8 @@ public class BookRepository {
         this.books = new HashMap<>();
     }
 
-    public Book addBook(Book book) {
+    public void addBook(Book book) {
         books.put(book.getIsbn(), book);
-        return book;
     }
 
     public List<Book> getAll() {
