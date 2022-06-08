@@ -28,10 +28,12 @@ class BookRepositoryTest {
     @Test
     @DisplayName("Given a map of books, when we request all books, then we get a list of all books")
     void givenAMapOfBooksWhenWeRequestAllBooksThenWeGetAListOfAllBooks() {
+        //Given
         BookRepository bookRepository = new BookRepository();
         bookRepository.addBook(book1);
+        //when
         List<Book> actualResult = bookRepository.getAll();
-
+        //then
         Assertions.assertEquals(List.of(book1), actualResult);
     }
 
