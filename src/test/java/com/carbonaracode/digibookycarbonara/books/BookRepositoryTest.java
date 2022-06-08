@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookRepositoryTest {
-    private final Book book1 = Book.newBuilder()
+    private Book book1 = Book.newBuilder()
             .withIsbn("978-1-4028-9462-6")
             .withTitle("The Phoenix Project")
             .withAuthor(new Author("Gene", "Kim"))
@@ -26,22 +26,15 @@ class BookRepositoryTest {
             .build();
 
     @Test
-    @DisplayName("Given a book repository, when we request all books, then we get a list of all books")
-    void givenABookRepositoryWhenWeRequestAllBooksThenWeGetAListOfAllBooks() {
+    @DisplayName("Given a map of books, when we request all books, then we get a list of all books")
+    void givenAMapOfBooksWhenWeRequestAllBooksThenWeGetAListOfAllBooks() {
+        //Given
         BookRepository bookRepository = new BookRepository();
         bookRepository.addBook(book1);
+        //when
         List<Book> actualResult = bookRepository.getAll();
-
+        //then
         Assertions.assertEquals(List.of(book1), actualResult);
-    }
-
-    @Test
-    @DisplayName("Given an empty book repository, when we request all books, we get an empty list")
-    void givenAnEmptyBookRepositoryWhenWeRequestAllBooksWeGetAnEmptyList() {
-        BookRepository bookRepository = new BookRepository();
-        List<Book> actualResult = bookRepository.getAll();
-
-        Assertions.assertEquals(List.of(), actualResult);
     }
 
 }
