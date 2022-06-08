@@ -21,6 +21,9 @@ public class Member {
     }
 
     private void validateEmail(String email) throws IllegalArgumentException {
+        if (email == null){
+            throw new IllegalArgumentException("Email cannot be empty");
+        }
         Pattern pattern = Pattern.compile( "^(.+)@(.+)$");
         Matcher matcher = pattern.matcher(email);
         if (!matcher.matches()){
@@ -32,7 +35,7 @@ public class Member {
         if (inss == null || inss.isBlank()){
             throw new IllegalArgumentException("INSS cannot be empty!");
         }
-    };
+    }
 
     public String getInss() {
         return inss;

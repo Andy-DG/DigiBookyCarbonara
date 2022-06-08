@@ -17,6 +17,18 @@ class MemberTest {
                 new Address("Buildstreet", 1, 1, "Buildtown")));
 
     }
+    @Test
+    void givenANullEmailAddress_whenCreatingAMember_thenThrowsIllegalArgumentException() {
+        //Given
+
+        //When
+
+        //Then
+        assertThrows(IllegalArgumentException.class, ()-> new Member("1", new Name("Bob", "Builder"),
+                null,
+                new Address("Buildstreet", 1, 1, "Buildtown")));
+
+    }
 
     @Test
     void givenAnEmailAdress_whenCreatingAMember_ThenEverythingIsOk() {
