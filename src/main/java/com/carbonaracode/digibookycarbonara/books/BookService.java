@@ -19,6 +19,6 @@ public class BookService {
     }
 
     public BookDTO getBookById(String id){
-        return this.bookMapper.toDTO(this.bookRepository.getBookById(id));
+        return this.bookMapper.toDTO(this.bookRepository.getBookByIsbn(id));
     }
 }

@@ -5,15 +5,25 @@ public class Book {
     private final String title;
     private final Author author;
     private final String summary;
-    Book(BookBuilder builder) {
+
+    protected Book(BookBuilder builder) {
         isbn = builder.isbn;
         title = builder.title;
         author = builder.author;
         summary = builder.summary;
     }
 
+
     public static BookBuilder newBuilder() {
         return new BookBuilder();
+    }
+
+    public static BookBuilder newBuilder(Book book) {
+        return Book.newBuilder()
+                .withTitle(book.getTitle())
+                .withAuthor(book.getAuthor())
+                .withIsbn(book.getIsbn())
+                .withSummary(book.getSummary());
     }
 
     public static final class BookBuilder {
@@ -24,6 +34,7 @@ public class Book {
 
         private BookBuilder() {
         }
+
 
         public BookBuilder withIsbn(String val) {
             isbn = val;

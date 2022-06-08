@@ -4,11 +4,9 @@ import com.carbonaracode.digibookycarbonara.Name;
 import com.carbonaracode.digibookycarbonara.books.Author;
 import com.carbonaracode.digibookycarbonara.books.Book;
 import com.carbonaracode.digibookycarbonara.books.BookRepository;
-import com.carbonaracode.digibookycarbonara.books.LentBook;
 import com.carbonaracode.digibookycarbonara.members.Address;
 import com.carbonaracode.digibookycarbonara.members.Member;
 import com.carbonaracode.digibookycarbonara.members.MemberRepository;
-import com.carbonaracode.digibookycarbonara.members.MemberService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

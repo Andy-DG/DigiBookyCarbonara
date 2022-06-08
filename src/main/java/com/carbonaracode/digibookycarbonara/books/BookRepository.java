@@ -1,12 +1,7 @@
 package com.carbonaracode.digibookycarbonara.books;
 
-import com.carbonaracode.digibookycarbonara.Name;
-import com.carbonaracode.digibookycarbonara.lending.LendingRepository;
-import com.carbonaracode.digibookycarbonara.members.Member;
-import com.carbonaracode.digibookycarbonara.members.MemberRepository;
 import org.springframework.stereotype.Repository;
 
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,11 +43,11 @@ public class BookRepository {
         return bookMap.values().stream().toList();
     }
 
-    public Book getBookById(String id) {
-        checkNotNull(id);
-        checkInMap(id);
+    public Book getBookByIsbn(String isbn) {
+        checkNotNull(isbn);
+        checkInMap(isbn);
 
-        return this.bookMap.get(id);
+        return this.bookMap.get(isbn);
     }
 
     private void checkInMap(String id) {

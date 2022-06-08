@@ -20,6 +20,12 @@ public class MemberRepository {
         return memberMap;
     }
 
+    public Member getMemberByInss(String inss) {
+        isNotNull(inss);
+        isNotEmpty(inss);
+        return this.memberMap.get(inss);
+    }
+
     public void register(Member member) throws IllegalArgumentException {
         isNotNull(member);
         validateInss(member);
@@ -43,6 +49,18 @@ public class MemberRepository {
     private void isNotNull(Member member) {
         if (member == null) {
             throw new IllegalArgumentException("Member cannot be null");
+        }
+    }
+
+    private void isNotNull(String inss) {
+        if (inss == null) {
+            throw new IllegalArgumentException("Inss cannot be null");
+        }
+    }
+
+    private void isNotEmpty(String inss) {
+        if (inss.equals("")) {
+            throw new IllegalArgumentException("Inss cannot be empty");
         }
     }
 }

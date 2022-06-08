@@ -1,4 +1,6 @@
-package com.carbonaracode.digibookycarbonara.books;
+package com.carbonaracode.digibookycarbonara.lending;
+
+import com.carbonaracode.digibookycarbonara.books.Book;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -16,7 +18,6 @@ public class LentBook extends Book {
         this.lendingID = UUID.randomUUID();
         this.dueDate = calculateDueDate();
     }
-
 
     private static LocalDate calculateDueDate() {
         LocalDate localDate = LocalDate.now();

@@ -1,6 +1,5 @@
 package com.carbonaracode.digibookycarbonara.lending;
 
-import com.carbonaracode.digibookycarbonara.books.LentBook;
 import com.carbonaracode.digibookycarbonara.members.Member;
 import org.springframework.stereotype.Repository;
 
