@@ -29,7 +29,9 @@ public class BookController {
     @ResponseStatus(HttpStatus.OK)
     public BookDTO getBookDetailById(@PathVariable String id){
         logger.info("Get called for book with id " + id);
-        return this.bookService.getBookById(id);
+        BookDTO bookById = this.bookService.getBookById(id);
+        logger.info("retrieved book: " + bookById.getIsbn());
+        return bookById;
     }
 
 
