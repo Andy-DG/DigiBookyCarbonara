@@ -1,19 +1,15 @@
 package com.carbonaracode.digibookycarbonara.books;
 
+import com.carbonaracode.digibookycarbonara.Name;
+
 public class Author {
-    private final String firstName;
-    private final String lastName;
+    private final Name name;
 
-    public Author(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Author(Name name) {
+        this.name = name;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public Name getName() {
+        return name;
     }
 }

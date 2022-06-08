@@ -1,5 +1,6 @@
 package com.carbonaracode.digibookycarbonara.books;
 
+import com.carbonaracode.digibookycarbonara.Name;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ class BookRepositoryTest {
     private Book book1 = Book.newBuilder()
             .withIsbn("978-1-4028-9462-6")
             .withTitle("The Phoenix Project")
-            .withAuthor(new Author("Gene", "Kim"))
+            .withAuthor(new Author(new Name("Gene", "Kim")))
             .withSummary("Bill is an IT manager at Parts Unlimited. " +
                     "It's Tuesday morning and on his drive into the office, Bill gets a call from the CEO.\n" +
                     "\n" +

@@ -1,5 +1,6 @@
 package com.carbonaracode.digibookycarbonara.members;
 
+import com.carbonaracode.digibookycarbonara.Name;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,9 +13,12 @@ class MemberTest {
         //When
 
         //Then
-        assertThrows(IllegalArgumentException.class, ()-> new Member("1", new Name("Bob", "Builder"),
-                "halloditismijnemailadres",
-                new Address("Buildstreet", 1, 1, "Buildtown")));
+        assertThrows(IllegalArgumentException.class, ()-> Member.newBuilder()
+                .withInss("1")
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail("ok")
+                .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
+                .build());
 
     }
     @Test
@@ -24,9 +28,12 @@ class MemberTest {
         //When
 
         //Then
-        assertThrows(IllegalArgumentException.class, ()-> new Member("1", new Name("Bob", "Builder"),
-                null,
-                new Address("Buildstreet", 1, 1, "Buildtown")));
+        assertThrows(IllegalArgumentException.class, ()-> Member.newBuilder()
+                .withInss("1")
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail(null)
+                .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
+                .build());
 
     }
 
@@ -35,9 +42,12 @@ class MemberTest {
         //Given
         String email = "bob.builder@building.build";
         //When
-        Member bob = new Member("1", new Name("Bob", "Builder"),
-                email,
-                new Address("Buildstreet", 1, 1, "Buildtown"));
+        Member bob = Member.newBuilder()
+                .withInss("1")
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail("pablo@ijscobar.com")
+                .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
+                .build();
 
         //Then
         assertEquals(bob.getEmail(), email);
@@ -48,9 +58,12 @@ class MemberTest {
         //Given
         String inss = "1";
         //When
-        Member bob = new Member(inss, new Name("Bob", "Builder"),
-                "bob.builder@building.build",
-                new Address("Buildstreet", 1, 1, "Buildtown"));
+        Member bob = Member.newBuilder()
+                .withInss(inss)
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail(null)
+                .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
+                .build();
         //Then
         assertEquals(bob.getInss(), inss);
 
@@ -63,9 +76,12 @@ class MemberTest {
         //When
 
         //Then
-        assertThrows(IllegalArgumentException.class, ()-> new Member(inss, new Name("Bob", "Builder"),
-                "bob.builder@building.build",
-                new Address("Buildstreet", 1, 1, "Buildtown")));
+        assertThrows(IllegalArgumentException.class, ()-> Member.newBuilder()
+                .withInss(inss)
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail(null)
+                .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
+                .build());
 
     }
 
@@ -76,9 +92,12 @@ class MemberTest {
         //When
 
         //Then
-        assertThrows(IllegalArgumentException.class, ()-> new Member(inss, new Name("Bob", "Builder"),
-                "bob.builder@building.build",
-                new Address("Buildstreet", 1, 1, "Buildtown")));
+        assertThrows(IllegalArgumentException.class, () -> Member.newBuilder()
+                .withInss(inss)
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail(null)
+                .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
+                .build());
 
     }
 }

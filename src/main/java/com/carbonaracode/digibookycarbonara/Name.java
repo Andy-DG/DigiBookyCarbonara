@@ -1,4 +1,4 @@
-package com.carbonaracode.digibookycarbonara.members;
+package com.carbonaracode.digibookycarbonara;
 
 public class Name {
     private final String firstName;

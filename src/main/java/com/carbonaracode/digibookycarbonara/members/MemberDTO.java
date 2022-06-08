@@ -1,5 +1,7 @@
 package com.carbonaracode.digibookycarbonara.members;
 
+import com.carbonaracode.digibookycarbonara.Name;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

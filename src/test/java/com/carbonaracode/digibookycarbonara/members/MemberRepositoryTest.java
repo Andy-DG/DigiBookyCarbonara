@@ -1,20 +1,22 @@
 package com.carbonaracode.digibookycarbonara.members;
 
-import com.carbonaracode.digibookycarbonara.books.Book;
-import com.carbonaracode.digibookycarbonara.books.BookRepository;
+import com.carbonaracode.digibookycarbonara.Name;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class MemberRepositoryTest {
-    Member bob = new Member("1", new Name("Bob", "Builder"),
-            "bob.builder@building.build",
-            new Address("Buildstreet", 1, 1, "Buildtown"));
+    Member bob = Member.newBuilder()
+            .withInss("1")
+            .withName(new Name("Bob", "Builder"))
+            .withEmail("bob.builder@building.build")
+            .withAddress(new Address("Buildstreet", 1, 1, "Buildtown"))
+            .build();
+
+
 
     @Test
     @DisplayName("Given a map of members, when we register a member, then the member is stored in the map")
@@ -46,9 +48,13 @@ class MemberRepositoryTest {
         MemberRepository memberRepository = new MemberRepository();
         memberRepository.register(bob);
 
-        Member hal = new Member("1", new Name("Hal", "Computer"),
-                "hal.computer@hal.computer",
-                new Address("Computerstreet", 2, 2, "Compiler City"));
+
+        Member hal = Member.newBuilder()
+                .withInss("1")
+                .withName(new Name("Hal", "Computer"))
+                .withEmail("hal.computer@hal.computer")
+                .withAddress(new Address("Computerstreet", 2, 2, "Compiler City"))
+                .build();
         //When
 
         //Then
@@ -61,9 +67,12 @@ class MemberRepositoryTest {
         MemberRepository memberRepository = new MemberRepository();
         memberRepository.register(bob);
 
-        Member hal = new Member("2", new Name("Hal", "Computer"),
-                "bob.builder@building.build",
-                new Address("Computerstreet", 2, 2, "Compiler City"));
+        Member hal = Member.newBuilder()
+                .withInss("2")
+                .withName(new Name("Hal", "Computer"))
+                .withEmail("bob.builder@building.build")
+                .withAddress(new Address("Computerstreet", 2, 2, "Compiler City"))
+                .build();
         //When
 
         //Then

@@ -12,6 +12,11 @@ public class MemberMapper {
     }
 
     Member memberDtoToMember(MemberDTO memberDto){
-        return new Member(memberDto.getInss(), memberDto.getName(), memberDto.getEmail(), memberDto.getAddress());
+        return Member.newBuilder()
+                .withInss(memberDto.getInss())
+                .withEmail(memberDto.getEmail())
+                .withName(memberDto.getName())
+                .withAddress(memberDto.getAddress())
+                .build();
     }
 }

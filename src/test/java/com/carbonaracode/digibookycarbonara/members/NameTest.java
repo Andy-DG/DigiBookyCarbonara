@@ -1,5 +1,6 @@
 package com.carbonaracode.digibookycarbonara.members;
 
+import com.carbonaracode.digibookycarbonara.Name;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
