@@ -9,6 +9,7 @@ class AddressTest {
     void givenAnAdress_whenAddingACity_thenEverythingIsOk() {
         //Given
         String city = "Buildtown";
+
         //When
         Address address = new Address("Buildstreet", 1, 1, city);
 
@@ -20,6 +21,7 @@ class AddressTest {
     void givenACityThatIsBlank_whenCreatingAddress_thenIllegalArgumentException() {
         //Given
         String city = "";
+
         //When
 
 
@@ -31,6 +33,7 @@ class AddressTest {
     void givenACityThatIsNull_whenCreatingAddress_thenIllegalArgumentException() {
         //Given
         String city = null;
+
         //When
 
 

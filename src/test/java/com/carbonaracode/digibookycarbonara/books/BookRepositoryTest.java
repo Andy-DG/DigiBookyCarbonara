@@ -1,19 +1,15 @@
 package com.carbonaracode.digibookycarbonara.books;
 
-import com.carbonaracode.digibookycarbonara.Name;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class BookRepositoryTest {
-    private Book book1 = Book.newBuilder()
+    private final Book book = Book.newBuilder()
             .withIsbn("978-1-4028-9462-6")
             .withTitle("The Phoenix Project")
             .withAuthor(new Author("Gene Kim"))
@@ -31,10 +27,12 @@ class BookRepositoryTest {
     void givenAMapOfBooksWhenWeRequestAllBooksThenWeGetAListOfAllBooks() {
         //Given
         BookRepository bookRepository = new BookRepository();
-        bookRepository.addBook(book1);
-        //when
+        bookRepository.addBook(book);
+
+        //When
         List<Book> actualResult = bookRepository.getAll();
-        //then
-        Assertions.assertEquals(List.of(book1), actualResult);
+
+        //Then
+        Assertions.assertEquals(List.of(book), actualResult);
     }
 }

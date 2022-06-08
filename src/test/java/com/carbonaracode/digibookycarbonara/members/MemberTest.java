@@ -40,7 +40,7 @@ class MemberTest {
     @Test
     void givenAnEmailAdress_whenCreatingAMember_ThenEverythingIsOk() {
         //Given
-        String email = "bob.builder@building.build";
+        String email = "pablo@ijscobar.com";
         //When
         Member bob = Member.newBuilder()
                 .withInss("1")
@@ -58,14 +58,14 @@ class MemberTest {
         //Given
         String inss = "1";
         //When
-        Member bob = Member.newBuilder()
+        Member member = Member.newBuilder()
                 .withInss(inss)
                 .withName(new Name("Pablo", "Ijscobar"))
-                .withEmail(null)
+                .withEmail("pablo@ijscobar.com")
                 .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
                 .build();
         //Then
-        assertEquals(bob.getInss(), inss);
+        assertEquals(member.getInss(), inss);
 
     }
 

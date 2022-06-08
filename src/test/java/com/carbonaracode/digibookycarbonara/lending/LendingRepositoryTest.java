@@ -24,7 +24,7 @@ class LendingRepositoryTest {
                 .withInss("666")
                 .withName(new Name("Pablo", "Ijscobar"))
                 .withEmail("boergor@king.nl")
-                .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
+                .withAddress(new Address("snowstreet", 1, 1, "OkayCity"))
                 .build();
 
         Book book = Book.newBuilder()
@@ -41,7 +41,7 @@ class LendingRepositoryTest {
                 .build();
 
         MemberRepository memberRepository = new MemberRepository();
-            memberRepository.register(member);
+        memberRepository.register(member);
         BookRepository bookRepository = new BookRepository();
         bookRepository.addBook(book);
         LendingRepository lendingRepository = new LendingRepository();
