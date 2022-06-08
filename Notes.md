@@ -6,6 +6,7 @@
 
 # Wat hebben we geleerd:
 - beslis rond builders / constructors vooraleer een test te schrijven.
+- beslis rond benamingen voor begin
 
 # What we are proud of:
 - 
