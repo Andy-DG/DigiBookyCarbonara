@@ -7,9 +7,20 @@ public class Address {
     private final String city;
 
     public Address(String streetName, int streetNumber, int postalCode, String city) {
+        stringIsNotEmptyOrNull(city);
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.postalCode = postalCode;
         this.city = city;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    private void stringIsNotEmptyOrNull(String string){
+        if (string == null || string.isBlank()){
+            throw new IllegalArgumentException("field cannot be empty!");
+        }
     }
 }
