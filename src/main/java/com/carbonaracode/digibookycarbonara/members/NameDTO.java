@@ -1,10 +1,10 @@
 package com.carbonaracode.digibookycarbonara.members;
 
-public class NameDto {
+public class NameDTO {
     private final String firstName;
     private final String lastName;
 
-    public NameDto(String firstName, String lastName) {
+    public NameDTO(String firstName, String lastName) {
         validateNameField(lastName);
         this.firstName = firstName;
         this.lastName = lastName;

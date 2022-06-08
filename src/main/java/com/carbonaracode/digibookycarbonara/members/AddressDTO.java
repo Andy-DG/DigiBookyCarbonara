@@ -1,12 +1,12 @@
 package com.carbonaracode.digibookycarbonara.members;
 
-public class AddressDto {
+public class AddressDTO {
     private final String streetName;
     private final int streetNumber;
     private final int postalCode;
     private final String city;
 
-    public AddressDto(String streetName, int streetNumber, int postalCode, String city) {
+    public AddressDTO(String streetName, int streetNumber, int postalCode, String city) {
         stringIsNotEmptyOrNull(city);
         this.streetName = streetName;
         this.streetNumber = streetNumber;

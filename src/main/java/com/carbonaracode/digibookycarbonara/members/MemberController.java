@@ -13,7 +13,7 @@ public class MemberController {
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public MemberDto registerNewMember(@RequestBody MemberDto memberDto){
+    public MemberDTO registerNewMember(@RequestBody MemberDTO memberDto){
         this.memberService.registerNewMember(memberDto);
         return memberDto;
     }

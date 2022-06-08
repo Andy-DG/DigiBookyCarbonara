@@ -3,13 +3,13 @@ package com.carbonaracode.digibookycarbonara.members;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MemberDto {
+public class MemberDTO {
     private final String inss;
     private final Name name;
     private final String email;
     private final Address address;
 
-    public MemberDto(String inss, Name name, String email, Address address) {
+    public MemberDTO(String inss, Name name, String email, Address address) {
         validateEmail(email);
         validateInss(inss);
         this.inss = inss;

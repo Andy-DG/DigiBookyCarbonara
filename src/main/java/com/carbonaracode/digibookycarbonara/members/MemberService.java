@@ -15,7 +15,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public void registerNewMember(MemberDto memberDto) {
+    public void registerNewMember(MemberDTO memberDto) {
         Member member = this.memberMapper.memberDtoToMember(memberDto);
         this.memberRepository.register(member);
     }
