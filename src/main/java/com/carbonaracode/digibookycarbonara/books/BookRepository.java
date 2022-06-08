@@ -1,6 +1,9 @@
 package com.carbonaracode.digibookycarbonara.books;
 
 import com.carbonaracode.digibookycarbonara.Name;
+import com.carbonaracode.digibookycarbonara.lending.LendingRepository;
+import com.carbonaracode.digibookycarbonara.members.Member;
+import com.carbonaracode.digibookycarbonara.members.MemberRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.FileNotFoundException;
@@ -10,6 +13,7 @@ import java.util.Map;
 
 @Repository
 public class BookRepository {
+
     private Map<String, Book> bookMap;
 
     public BookRepository() {
@@ -32,7 +36,9 @@ public class BookRepository {
         bookMap = new HashMap<>();
         bookMap.put(book1.getIsbn(), book1);
         return bookMap;
-    };
+    }
+
+
 
     public void addBook(Book book) {
         bookMap.put(book.getIsbn(), book);
@@ -55,5 +61,8 @@ public class BookRepository {
 
     private void checkNotNull(String id) {
         if(id == null || id.isBlank()) throw new IllegalArgumentException("id cannot be blank or null");
+    }
+    public Map<String, Book> getBookMap() {
+        return bookMap;
     }
 }

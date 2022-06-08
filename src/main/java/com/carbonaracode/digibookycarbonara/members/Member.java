@@ -13,15 +13,15 @@ public class Member {
     private final String email;
     private final Address address;
 
-    private Member(Builder builder) {
+    private Member(MemberBuilder builder) {
         inss = builder.inss;
         name = builder.name;
         email = builder.email;
         address = builder.address;
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
+    public static MemberBuilder newBuilder() {
+        return new MemberBuilder();
     }
 
 
@@ -44,33 +44,33 @@ public class Member {
     }
 
 
-    public static final class Builder {
+    public static final class MemberBuilder {
         private String inss;
         private Name name;
         private String email;
         private Address address;
 
-        private Builder() {
+        private MemberBuilder() {
         }
 
-        public Builder withInss(String inss) {
+        public MemberBuilder withInss(String inss) {
             validateInss(inss);
             this.inss = inss;
             return this;
         }
 
-        public Builder withName(Name name) {
+        public MemberBuilder withName(Name name) {
             this.name = name;
             return this;
         }
 
-        public Builder withEmail(String email) {
+        public MemberBuilder withEmail(String email) {
             validateEmail(email);
             this.email = email;
             return this;
         }
 
-        public Builder withAddress(Address address) {
+        public MemberBuilder withAddress(Address address) {
             this.address = address;
             return this;
         }

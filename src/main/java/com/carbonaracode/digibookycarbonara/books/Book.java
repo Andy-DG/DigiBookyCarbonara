@@ -5,43 +5,42 @@ public class Book {
     private final String title;
     private final Author author;
     private final String summary;
-
-    private Book(Builder builder) {
+    Book(BookBuilder builder) {
         isbn = builder.isbn;
         title = builder.title;
         author = builder.author;
         summary = builder.summary;
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
+    public static BookBuilder newBuilder() {
+        return new BookBuilder();
     }
 
-    public static final class Builder {
+    public static final class BookBuilder {
         private String isbn;
         private String title;
         private Author author;
         private String summary;
 
-        private Builder() {
+        private BookBuilder() {
         }
 
-        public Builder withIsbn(String val) {
+        public BookBuilder withIsbn(String val) {
             isbn = val;
             return this;
         }
 
-        public Builder withTitle(String val) {
+        public BookBuilder withTitle(String val) {
             title = val;
             return this;
         }
 
-        public Builder withAuthor(Author val) {
+        public BookBuilder withAuthor(Author val) {
             author = val;
             return this;
         }
 
-        public Builder withSummary(String val) {
+        public BookBuilder withSummary(String val) {
             summary = val;
             return this;
         }
