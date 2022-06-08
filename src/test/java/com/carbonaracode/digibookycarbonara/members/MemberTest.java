@@ -30,4 +30,43 @@ class MemberTest {
         //Then
         assertEquals(bob.getEmail(), email);
     }
+
+    @Test
+    void givenAnInss_whenCreatingAMember_ThenEverythingIsOk() {
+        //Given
+        String inss = "1";
+        //When
+        Member bob = new Member(inss, new Name("Bob", "Builder"),
+                "bob.builder@building.build",
+                new Address("Buildstreet", 1, 1, "Buildtown"));
+        //Then
+        assertEquals(bob.getInss(), inss);
+
+    }
+
+    @Test
+    void givenABlankInss_whenCreatingAMember_ThenThrowsIllegalArgumentException() {
+        //Given
+        String inss = "";
+        //When
+
+        //Then
+        assertThrows(IllegalArgumentException.class, ()-> new Member(inss, new Name("Bob", "Builder"),
+                "bob.builder@building.build",
+                new Address("Buildstreet", 1, 1, "Buildtown")));
+
+    }
+
+    @Test
+    void givenANullInss_whenCreatingAMember_ThenThrowsIllegalArgumentException() {
+        //Given
+        String inss = null;
+        //When
+
+        //Then
+        assertThrows(IllegalArgumentException.class, ()-> new Member(inss, new Name("Bob", "Builder"),
+                "bob.builder@building.build",
+                new Address("Buildstreet", 1, 1, "Buildtown")));
+
+    }
 }

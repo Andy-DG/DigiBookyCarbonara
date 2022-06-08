@@ -69,4 +69,5 @@ class MemberRepositoryTest {
         //Then
         assertThrows(IllegalArgumentException.class, ()->memberRepository.register(hal));
     }
+
 }

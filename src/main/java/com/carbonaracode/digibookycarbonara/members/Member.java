@@ -13,6 +13,7 @@ public class Member {
 
     public Member(String inss, Name name, String email, Address address) {
         validateEmail(email);
+        validateInss(inss);
         this.inss = inss;
         this.name = name;
         this.email = email;
@@ -26,6 +27,12 @@ public class Member {
             throw new IllegalArgumentException("invalid e-mail format");
         }
     }
+
+    private void validateInss(String inss){
+        if (inss == null || inss.isBlank()){
+            throw new IllegalArgumentException("INSS cannot be empty!");
+        }
+    };
 
     public String getInss() {
         return inss;
