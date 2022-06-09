@@ -7,6 +7,8 @@ import com.carbonaracode.digibookycarbonara.members.MemberRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class LendingSystem {
@@ -33,6 +35,12 @@ public class LendingSystem {
     }
 
     public String calculateLendingId(String isbn, String inss) {
-        return isbn + inss + LocalDate.now().toString();
+        return isbn + inss + LocalDate.now();
+    }
+
+    public void returnBook(String lendingID, Member member) {
+       List<LentBook> bookToReturn = lendingRepository.getLendingMap().get(member).stream()
+               .filter(lentBook -> lentBook.getLendingID().equals(lendingID)).toList();
+       lendingRepository.getLendingMap().get(member).remove(bookToReturn);
     }
 }

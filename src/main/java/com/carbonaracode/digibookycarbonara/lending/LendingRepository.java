@@ -10,6 +10,7 @@ import java.util.*;
 public class LendingRepository {
     private Map<Member, List<LentBook>> lendingMap;
 
+
     public LendingRepository() {
         this.lendingMap = new HashMap<>();
     }

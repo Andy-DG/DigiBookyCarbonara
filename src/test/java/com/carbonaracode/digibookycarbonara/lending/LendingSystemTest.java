@@ -42,7 +42,7 @@ class LendingSystemTest {
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
 
         //When
-        LentBook expected = new LentBook(Book.newBuilder(book), isbn + "666" + LocalDate.now().toString());
+        LentBook expected = new LentBook(Book.newBuilder(book), isbn + "666" + LocalDate.now());
         LentBook actual = lendingSystem.lend(book.getIsbn(), member.getInss());
 
         //Then
@@ -77,11 +77,79 @@ class LendingSystemTest {
 
         //When
 
-        LentBook expected = new LentBook(LentBook.newBuilder(), isbn + "666" + LocalDate.now().toString());
+        LentBook expected = new LentBook(LentBook.newBuilder(), isbn + "666" + LocalDate.now());
         LentBook firstLent = lendingSystem.lend(book.getIsbn(), member.getInss());
 
         //Then
         Assertions.assertThrows(IllegalArgumentException.class, () -> lendingSystem.lend(book.getIsbn(), member.getInss()));
     }
 
+    @Test
+    void givenALentBookAndAUser_whenUserReturnsBook_thenBookIsNoLongerInLendingList() {
+        //Given
+        String isbn = "7777";
+        Member member = Member.newBuilder()
+                .withInss("666")
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail("boergor@king.nl")
+                .withAddress(new Address("snowstreet", 1, 1, "OkayCity"))
+                .build();
+
+        Book book = Book.newBuilder()
+                .withIsbn(isbn)
+                .withTitle("The Phoenix Project")
+                .withAuthor(new Author("Gene", "Kim"))
+                .withSummary("Summary")
+                .build();
+        MemberRepository memberRepository = new MemberRepository();
+        memberRepository.register(member);
+        BookRepository bookRepository = new BookRepository();
+        bookRepository.addBook(book);
+        LendingRepository lendingRepository = new LendingRepository();
+
+        LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
+
+        String lendingID = lendingSystem.lend(isbn, member.getInss()).getLendingID();
+
+        //When
+
+        lendingSystem.returnBook(lendingID,member);
+
+        //Then
+        Assertions.assertFalse(lendingRepository.getLendingMap().get(member).contains(book));
+
+    }
+
+//    @Test
+//    void givenALentBookAndUser_whenUserReturnsBookAfterDueDate_thenReturnMessageBookOverDue() {
+//        //Given
+//        String isbn = "7777";
+//        Member member = Member.newBuilder()
+//                .withInss("666")
+//                .withName(new Name("Pablo", "Ijscobar"))
+//                .withEmail("boergor@king.nl")
+//                .withAddress(new Address("snowstreet", 1, 1, "OkayCity"))
+//                .build();
+//
+//        Book book = Book.newBuilder()
+//                .withIsbn(isbn)
+//                .withTitle("The Phoenix Project")
+//                .withAuthor(new Author("Gene", "Kim"))
+//                .withSummary("Summary")
+//                .build();
+//        MemberRepository memberRepository = new MemberRepository();
+//        memberRepository.register(member);
+//        BookRepository bookRepository = new BookRepository();
+//        bookRepository.addBook(book);
+//        LendingRepository lendingRepository = new LendingRepository();
+//
+//        LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
+//
+//        String lendingID = lendingSystem.lend(isbn, member.getInss()).getLendingID();
+//        //When
+//        lendingSystem.returnBook(lendingID,member,returnTime);
+//
+//        //Then
+//
+//    }
 }

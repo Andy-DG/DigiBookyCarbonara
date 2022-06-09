@@ -50,9 +50,9 @@ class LendingRepositoryTest {
         //Then
         Map<Member, List<LentBook>> lendingMap = lendingRepository.getLendingMap();
         List<LentBook> lentBooks = lendingMap.get(member);
-        boolean contains = lentBooks.contains(lentBook);
 
-        assertTrue(contains);
+
+        assertTrue(lentBooks.contains(lentBook));
     }
 
     @Test
