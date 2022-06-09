@@ -5,6 +5,8 @@ import com.carbonaracode.digibookycarbonara.books.BookRepository;
 import com.carbonaracode.digibookycarbonara.members.Member;
 import com.carbonaracode.digibookycarbonara.members.MemberRepository;
 
+import java.time.LocalDate;
+
 public class LendingSystem {
     private BookRepository bookRepository;
     private MemberRepository memberRepository;
@@ -20,8 +22,13 @@ public class LendingSystem {
         Book book = bookRepository.getBookByIsbn(isbn);
         Member member = memberRepository.getMemberByInss(inss);
 
-        LentBook lentBook = new LentBook(Book.newBuilder(book));
+        LentBook lentBook = new LentBook(Book.newBuilder(book), calculateLendingId(isbn, inss));
+        member.addLentBook(lentBook);
 
         return lendingRepository.addLentBook(member, lentBook);
+    }
+
+    private String calculateLendingId(String isbn, String inss) {
+        return isbn + inss + LocalDate.now().toString();
     }
 }

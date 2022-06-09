@@ -49,7 +49,6 @@ class LendingRepositoryTest {
         //When
         LentBook lentBook = lendingSystem.lend(book.getIsbn(), member.getInss());
 
-
         //Then
         Map<Member, List<LentBook>> lendingMap = lendingRepository.getLendingMap();
         List<LentBook> lentBooks = lendingMap.get(member);

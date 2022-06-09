@@ -1,9 +1,11 @@
 package com.carbonaracode.digibookycarbonara.members;
 
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.carbonaracode.digibookycarbonara.Name;
+import com.carbonaracode.digibookycarbonara.lending.LentBook;
 
 public class Member {
 //This member should have a unique INSS (social security number), last name, first name, email, street name, street number,
@@ -12,6 +14,7 @@ public class Member {
     private final Name name;
     private final String email;
     private final Address address;
+    private List<LentBook> lentBookList;
 
     private Member(MemberBuilder builder) {
         inss = builder.inss;
@@ -23,9 +26,6 @@ public class Member {
     public static MemberBuilder newBuilder() {
         return new MemberBuilder();
     }
-
-
-
 
     public String getInss() {
         return inss;
@@ -95,5 +95,14 @@ public class Member {
                 throw new IllegalArgumentException("INSS cannot be empty!");
             }
         }
+    }
+
+    public LentBook addLentBook(LentBook lentBook) {
+        this.getLentBookList().add(lentBook);
+        return lentBook;
+    }
+
+    public List<LentBook> getLentBookList() {
+        return lentBookList;
     }
 }

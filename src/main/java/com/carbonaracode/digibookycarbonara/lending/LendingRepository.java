@@ -16,7 +16,6 @@ public class LendingRepository {
         this.lendingMap = new HashMap<>();
     }
 
-
     public Map<Member, List<LentBook>> getLendingMap() {
         return lendingMap;
     }
@@ -28,7 +27,6 @@ public class LendingRepository {
             this.lendingMap.put(member, new ArrayList<>());
             this.lendingMap.get(member).add(lentBook);
         }
-
         return lentBook;
     }
 }

@@ -13,7 +13,6 @@ public class Book {
         summary = builder.summary;
     }
 
-
     public static BookBuilder newBuilder() {
         return new BookBuilder();
     }
@@ -60,6 +59,7 @@ public class Book {
             return new Book(this);
         }
     }
+
 
     public String getIsbn() {
         return isbn;

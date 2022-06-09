@@ -10,12 +10,12 @@ public class LentBook extends Book {
 
     private final static int DEFAULT_DUE_WEEKS = 3;
 
-    private final UUID lendingID;
+    private final String lendingID;
     private final LocalDate dueDate;
 
-    public LentBook(BookBuilder builder) {
+    public LentBook(BookBuilder builder, String lendingID) {
         super(builder);
-        this.lendingID = UUID.randomUUID();
+        this.lendingID = lendingID;
         this.dueDate = calculateDueDate();
     }
 
@@ -24,7 +24,7 @@ public class LentBook extends Book {
         return localDate.plusWeeks(DEFAULT_DUE_WEEKS);
     }
 
-    public UUID getLendingID() {
+    public String getLendingID() {
         return lendingID;
     }
 
