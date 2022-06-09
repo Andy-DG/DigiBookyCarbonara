@@ -43,7 +43,7 @@ class LendingRepositoryTest {
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
 
         //When
-        LentBook lentBook = lendingSystem.lend(book.getIsbn(), member.getInss());
+        LentBook lentBook = lendingSystem.lend(book.getISBN(), member.getInss());
 
         //Then
         Map<Member, List<LentBook>> lendingMap = lendingRepository.getLendingMap();
@@ -76,13 +76,13 @@ class LendingRepositoryTest {
         LendingRepository lendingRepository = new LendingRepository();
 
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
-        lendingSystem.lend(book.getIsbn(), member.getInss());
+        lendingSystem.lend(book.getISBN(), member.getInss());
 
         //When
         List<LentBook> actual = lendingRepository.getLentBookList(member);
 
         //Then
-        List<LentBook> expected = List.of(new LentBook(Book.newBuilder(book), lendingSystem.calculateLendingId(book.getIsbn(), member.getInss())));
+        List<LentBook> expected = List.of(new LentBook(Book.newBuilder(book), lendingSystem.calculateLendingId(book.getISBN(), member.getInss())));
 
         assertEquals(expected, actual);
     }

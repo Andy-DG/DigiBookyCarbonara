@@ -34,5 +34,16 @@ public class BookController {
         return bookById;
     }
 
+    @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public BookDTO registerNewBook(@RequestBody CreateBookDTO createBookDTO){
+        // NOT IMPLEMENTED (No roles yet)
+        // If any other user besides a Librarian tries to register a new book,
+        // the server should respond with 403 Forbidden and a custom message.
+
+        logger.info("Registered called for a book with ISBN: " + createBookDTO.getIsbn());
+        return this.bookService.registerNewBook(createBookDTO);
+    }
+
 
 }

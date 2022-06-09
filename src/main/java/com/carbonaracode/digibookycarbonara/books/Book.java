@@ -1,7 +1,5 @@
 package com.carbonaracode.digibookycarbonara.books;
 
-import com.carbonaracode.digibookycarbonara.lending.LendingRepository;
-
 public class Book {
     private final String isbn;
     private final String title;
@@ -23,7 +21,7 @@ public class Book {
         return Book.newBuilder()
                 .withTitle(book.getTitle())
                 .withAuthor(book.getAuthor())
-                .withIsbn(book.getIsbn())
+                .withIsbn(book.getISBN())
                 .withSummary(book.getSummary());
     }
 
@@ -62,7 +60,7 @@ public class Book {
         }
     }
 
-    public String getIsbn() {
+    public String getISBN() {
         return isbn;
     }
 

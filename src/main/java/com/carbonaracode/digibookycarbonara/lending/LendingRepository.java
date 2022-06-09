@@ -33,7 +33,7 @@ public class LendingRepository {
     }
 
     public boolean isLent(Book book) {
-        return this.getAllLentBooks().stream().map(Book::getIsbn).anyMatch(lentBookIsbn -> lentBookIsbn.equals(book.getIsbn()));
+        return this.getAllLentBooks().stream().map(Book::getISBN).anyMatch(lentBookIsbn -> lentBookIsbn.equals(book.getISBN()));
     }
 
     public List<LentBook> getLentBookList(Member member) {

@@ -29,14 +29,15 @@ public class BookRepository {
                         "or else Bill's entire department will be outsourced.\n")
                 .build();
         bookMap = new HashMap<>();
-        bookMap.put(book1.getIsbn(), book1);
+        bookMap.put(book1.getISBN(), book1);
         return bookMap;
     }
 
 
 
     public void addBook(Book book) {
-        bookMap.put(book.getIsbn(), book);
+        if(bookMap.containsKey(book.getISBN())) throw new IllegalArgumentException("Book with ISBN already registered");
+        bookMap.put(book.getISBN(), book);
     }
 
     public List<Book> getAll() {

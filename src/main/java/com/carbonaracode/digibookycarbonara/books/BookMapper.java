@@ -15,8 +15,17 @@ public class BookMapper {
                 .build();
     }
 
+    public Book toEntity(CreateBookDTO bookDTO) {
+        return Book.newBuilder()
+                .withIsbn(bookDTO.getIsbn())
+                .withTitle(bookDTO.getTitle())
+                .withAuthor(new Author(bookDTO.getAuthorFirstName(), bookDTO.getAuthorLastName()))
+                .withSummary("") //not given in front-end
+                .build();
+    }
+
     public BookDTO toDTO(Book book) {
-        return new BookDTO(book.getIsbn(), book.getTitle(), book.getSummary(), book.getAuthor().authorFirstname(), book.getAuthor().authorLastname());
+        return new BookDTO(book.getISBN(), book.getTitle(), book.getSummary(), book.getAuthor().authorFirstname(), book.getAuthor().authorLastname());
     }
 
     public List<BookDTO> toDTO(List<Book> bookList) {
