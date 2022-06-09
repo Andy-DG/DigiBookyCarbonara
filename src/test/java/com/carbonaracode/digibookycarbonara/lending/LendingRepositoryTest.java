@@ -45,7 +45,7 @@ class LendingRepositoryTest {
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
 
         //When
-        LentBook lentBook = lendingSystem.lend(book.getIsbn(), member.getInss());
+        LentBook lentBook = lendingSystem.lend(member.getInss(), book.getIsbn());
 
         //Then
         Map<Member, List<LentBook>> lendingMap = lendingRepository.getLendingMap();
@@ -79,7 +79,7 @@ class LendingRepositoryTest {
         LendingRepository lendingRepository = new LendingRepository();
 
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
-        lendingSystem.lend(book.getIsbn(), member.getInss());
+        lendingSystem.lend(member.getInss(), book.getIsbn());
 
         //When
         List<LentBook> actual = lendingRepository.getLentBookList(member);

@@ -22,7 +22,7 @@ public class LendingSystem {
         this.memberRepository = memberRepository;
     }
 
-    public LentBook lend(String isbn, String inss) {
+    public LentBook lend(String inss, String isbn) {
         Book book = bookRepository.getBookByIsbn(isbn);
         bookAvailabilityCheck(book);
         Member member = memberRepository.getMemberByInss(inss);
@@ -39,8 +39,8 @@ public class LendingSystem {
     }
 
     public void returnBook(String lendingID, Member member) {
-       List<LentBook> bookToReturn = lendingRepository.getLendingMap().get(member).stream()
-               .filter(lentBook -> lentBook.getLendingID().equals(lendingID)).toList();
+       LentBook bookToReturn = lendingRepository.getLendingMap().get(member).stream()
+               .filter(lentBook -> lentBook.getLendingID().equals(lendingID)).toList().get(0);
        lendingRepository.getLendingMap().get(member).remove(bookToReturn);
     }
 }

@@ -1,5 +1,6 @@
 package com.carbonaracode.digibookycarbonara.books;
 
+import com.carbonaracode.digibookycarbonara.lending.LendingService;
 import com.carbonaracode.digibookycarbonara.lending.LentBookDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +15,12 @@ import java.util.List;
 @RequestMapping(value = "books")
 public class BookController {
     private final BookService bookService;
+    private final LendingService lendingService;
     public static final Logger logger = LoggerFactory.getLogger(BookController.class);
 
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, LendingService lendingService) {
         this.bookService = bookService;
+        this.lendingService = lendingService;
     }
 
     @GetMapping(produces = "application/json")
@@ -46,7 +49,12 @@ public class BookController {
         return this.bookService.registerNewBook(createBookDTO);
     }
 
-
+    @PostMapping(path = "/{inss}/{isbn}/lent", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public LentBookDTO LendBook(@PathVariable String inss, @PathVariable String isbn) {
+        logger.info("Post called to lend to member " + inss + " and book " + isbn);
+        return lendingService.lendBook(inss, isbn);
+    }
 
 
 }

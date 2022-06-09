@@ -51,8 +51,8 @@ public class BookRepository {
         return this.bookMap.get(isbn);
     }
 
-    private void checkInMap(String id) throws IllegalArgumentException {
-        if(!this.bookMap.containsKey(id)) throw new IllegalArgumentException("No book with called isbn found");
+    private void checkInMap(String isbn) throws IllegalArgumentException {
+        if(!this.bookMap.containsKey(isbn)) throw new IllegalArgumentException("No book with called isbn found " + isbn);
     }
 
     private void checkNotNull(String id) throws IllegalArgumentException {
