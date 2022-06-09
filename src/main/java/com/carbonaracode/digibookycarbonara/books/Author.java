@@ -2,14 +2,15 @@ package com.carbonaracode.digibookycarbonara.books;
 
 import com.carbonaracode.digibookycarbonara.Name;
 
-public class Author {
-    private final String name;
+public record Author(String authorFirstname, String authorLastname){
 
-    public Author(String name) {
-        this.name = name;
+    @Override
+    public String authorFirstname() {
+        return authorFirstname;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String authorLastname() {
+        return authorLastname;
     }
 }

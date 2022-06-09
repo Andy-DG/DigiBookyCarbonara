@@ -12,7 +12,7 @@ class BookRepositoryTest {
     private final Book book = Book.newBuilder()
             .withIsbn("978-1-4028-9462-6")
             .withTitle("The Phoenix Project")
-            .withAuthor(new Author("Gene Kim"))
+            .withAuthor(new Author("Gene", "Kim"))
             .withSummary("Bill is an IT manager at Parts Unlimited. " +
                     "It's Tuesday morning and on his drive into the office, Bill gets a call from the CEO.\n" +
                     "\n" +
