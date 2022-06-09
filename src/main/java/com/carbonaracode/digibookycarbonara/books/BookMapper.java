@@ -25,7 +25,7 @@ public class BookMapper {
     }
 
     public BookDTO toDTO(Book book) {
-        return new BookDTO(book.getISBN(), book.getTitle(), book.getSummary(), book.getAuthor().authorFirstname(), book.getAuthor().authorLastname());
+        return new BookDTO(book.getIsbn(), book.getTitle(), book.getSummary(), book.getAuthor().authorFirstname(), book.getAuthor().authorLastname());
     }
 
     public List<BookDTO> toDTO(List<Book> bookList) {

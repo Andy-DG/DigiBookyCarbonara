@@ -21,7 +21,7 @@ public class Book {
         return Book.newBuilder()
                 .withTitle(book.getTitle())
                 .withAuthor(book.getAuthor())
-                .withIsbn(book.getISBN())
+                .withIsbn(book.getIsbn())
                 .withSummary(book.getSummary());
     }
 
@@ -60,7 +60,7 @@ public class Book {
         }
     }
 
-    public String getISBN() {
+    public String getIsbn() {
         return isbn;
     }
 
