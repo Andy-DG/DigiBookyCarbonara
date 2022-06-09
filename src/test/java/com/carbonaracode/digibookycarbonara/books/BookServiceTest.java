@@ -31,6 +31,11 @@ class BookServiceTest {
         bookService = new BookService(bookRepository, bookMapper);
     }
 
+    @Test
+    @DisplayName("Given the id of an existing book, when searching the book, return the book")
+    void givenValidId_WhenSearching_ThenReturnBook(){
+        String bookToFind = "onr12*155*484";
+        BookDTO bookById = bookService.getBookByIsbn(bookToFind);
     @Nested
     class SearchBooks{
         @Test

@@ -74,7 +74,7 @@ class LendingSystemTest {
 
         //When
 
-        LentBook expected = new LentBook(Book.newBuilder(book), "978-1-4028-9462-6" + "666" + LocalDate.now().toString());
+        LentBook expected = new LentBook(LentBook.newBuilder()., "978-1-4028-9462-6" + "666" + LocalDate.now().toString());
         LentBook firstLent = lendingSystem.lend(book.getISBN(), member.getInss());
 
         //Then

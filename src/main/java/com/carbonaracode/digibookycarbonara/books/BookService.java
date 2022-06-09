@@ -18,7 +18,7 @@ public class BookService {
         return bookMapper.toDTO(bookRepository.getAll());
     }
 
-    public BookDTO getBookById(String id){
+    public BookDTO getBookByIsbn(String id){
         return this.bookMapper.toDTO(this.bookRepository.getBookByIsbn(id));
     }
 
@@ -52,4 +52,5 @@ public class BookService {
     private void checkCopiesLessThanZero(CreateBookDTO createBookDTO) {
         if(createBookDTO.getCopies() < 0) throw new IllegalArgumentException("Amount of copies cannot be less than zero");
     }
+
 }

@@ -4,9 +4,11 @@ import com.carbonaracode.digibookycarbonara.books.Book;
 import com.carbonaracode.digibookycarbonara.books.BookRepository;
 import com.carbonaracode.digibookycarbonara.members.Member;
 import com.carbonaracode.digibookycarbonara.members.MemberRepository;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Component
 public class LendingSystem {
     private BookRepository bookRepository;
     private MemberRepository memberRepository;

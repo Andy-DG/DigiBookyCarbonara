@@ -1,5 +1,6 @@
 package com.carbonaracode.digibookycarbonara.books;
 
+import com.carbonaracode.digibookycarbonara.lending.LentBookDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -25,13 +26,13 @@ public class BookController {
     }
 
 
-    @GetMapping(path = "/{id}", produces = "application/json")
+    @GetMapping(path = "/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public BookDTO getBookDetailById(@PathVariable String id){
-        logger.info("Get called for book with id " + id);
-        BookDTO bookById = this.bookService.getBookById(id);
-        logger.info("retrieved book: " + bookById.getIsbn());
-        return bookById;
+    public BookDTO getBookDetailByIsbn(@PathVariable String isbn) {
+        logger.info("Get called for book with isbn " + isbn);
+        BookDTO bookByIsbn = this.bookService.getBookByIsbn(isbn);
+        logger.info("retrieved book: " + bookByIsbn.getIsbn());
+        return bookByIsbn;
     }
 
     @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
@@ -44,6 +45,8 @@ public class BookController {
         logger.info("Registered called for a book with ISBN: " + createBookDTO.getIsbn());
         return this.bookService.registerNewBook(createBookDTO);
     }
+
+
 
 
 }
