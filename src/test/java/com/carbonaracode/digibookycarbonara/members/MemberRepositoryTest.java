@@ -5,12 +5,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class MemberRepositoryTest {
+
     Member bob = Member.newBuilder()
-            .withInss("1")
+            .withInss(UUID.randomUUID().toString())
             .withName(new Name("Bob", "Builder"))
             .withEmail("bob.builder@building.build")
             .withAddress(new Address("Buildstreet", 1, 1, "Buildtown"))

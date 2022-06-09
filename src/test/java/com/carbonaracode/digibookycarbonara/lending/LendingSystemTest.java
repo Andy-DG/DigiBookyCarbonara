@@ -43,7 +43,7 @@ class LendingSystemTest {
 
         //When
         LentBook expected = new LentBook(Book.newBuilder(book), isbn + "666" + LocalDate.now().toString());
-        LentBook actual = lendingSystem.lend(book.getIsbn(), member.getInss());
+        LentBook actual = lendingSystem.lend(member.getInss(), book.getIsbn());
 
         //Then
         Assertions.assertEquals(expected, actual);
@@ -78,7 +78,7 @@ class LendingSystemTest {
         //When
 
         LentBook expected = new LentBook(LentBook.newBuilder(), isbn + "666" + LocalDate.now().toString());
-        LentBook firstLent = lendingSystem.lend(book.getIsbn(), member.getInss());
+        LentBook firstLent = lendingSystem.lend(member.getInss(), book.getIsbn());
 
         //Then
         Assertions.assertThrows(IllegalArgumentException.class, () -> lendingSystem.lend(book.getIsbn(), member.getInss()));
