@@ -84,4 +84,77 @@ class LendingSystemTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> lendingSystem.lend(book.getIsbn(), member.getInss()));
     }
 
+    @Test
+    void givenALentBookAndAUser_whenUserReturnsBook_thenBookIsNoLongerInLendingList() {
+        //Given
+        String isbn = "7777";
+        Member member = Member.newBuilder()
+                .withInss("666")
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail("boergor@king.nl")
+                .withAddress(new Address("snowstreet", 1, 1, "OkayCity"))
+                .build();
+
+        Book book = Book.newBuilder()
+                .withIsbn(isbn)
+                .withTitle("The Phoenix Project")
+                .withAuthor(new Author("Gene", "Kim"))
+                .withSummary("Summary")
+                .build();
+        MemberRepository memberRepository = new MemberRepository();
+        memberRepository.register(member);
+        BookRepository bookRepository = new BookRepository();
+        bookRepository.addBook(book);
+        LendingRepository lendingRepository = new LendingRepository();
+
+        LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
+
+        LentBook bookToReturn = lendingSystem.lend(isbn, member.getInss());
+        String lendingID = bookToReturn.getLendingID();
+
+
+        //When
+
+        lendingSystem.returnBook(lendingID,member,LocalDate.now());
+
+        //Then
+        Assertions.assertFalse(lendingRepository.getLendingMap().get(member).contains(bookToReturn));
+
+    }
+
+    @Test
+    void givenALentBookAndUser_whenUserReturnsBookAfterDueDate_thenReturnMessageBookOverDue() {
+        //Given
+        String isbn = "7777";
+        Member member = Member.newBuilder()
+                .withInss("666")
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail("boergor@king.nl")
+                .withAddress(new Address("snowstreet", 1, 1, "OkayCity"))
+                .build();
+
+        Book book = Book.newBuilder()
+                .withIsbn(isbn)
+                .withTitle("The Phoenix Project")
+                .withAuthor(new Author("Gene", "Kim"))
+                .withSummary("Summary")
+                .build();
+        MemberRepository memberRepository = new MemberRepository();
+        memberRepository.register(member);
+        BookRepository bookRepository = new BookRepository();
+        bookRepository.addBook(book);
+        LendingRepository lendingRepository = new LendingRepository();
+
+        LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
+
+        String lendingID = lendingSystem.lend(isbn, member.getInss()).getLendingID();
+        //When
+        LocalDate returnTime = LocalDate.now().plusWeeks(4);
+        String actual = lendingSystem.returnBook(lendingID,member,returnTime);
+
+        //Then
+        Assertions.assertEquals("Book returned too late!",actual);
+
+    }
+
 }

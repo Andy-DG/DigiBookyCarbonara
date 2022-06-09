@@ -22,7 +22,7 @@ public class LendingSystem {
         this.memberRepository = memberRepository;
     }
 
-    public LentBook lend(String inss, String isbn) {
+    public LentBook lend(String isbn, String inss) {
         Book book = bookRepository.getBookByIsbn(isbn);
         bookAvailabilityCheck(book);
         Member member = memberRepository.getMemberByInss(inss);
@@ -38,9 +38,14 @@ public class LendingSystem {
         return isbn + inss + LocalDate.now();
     }
 
-    public void returnBook(String lendingID, Member member) {
-       LentBook bookToReturn = lendingRepository.getLendingMap().get(member).stream()
-               .filter(lentBook -> lentBook.getLendingID().equals(lendingID)).toList().get(0);
-       lendingRepository.getLendingMap().get(member).remove(bookToReturn);
+    public String returnBook(String lendingID, Member member, LocalDate returnTime) {
+        LentBook bookToReturn = lendingRepository.getLendingMap().get(member).stream()
+                .filter(lentBook -> lentBook.getLendingID().equals(lendingID)).toList().get(0);
+        LocalDate dueDate = bookToReturn.getDueDate();
+        lendingRepository.getLendingMap().get(member).remove(bookToReturn);
+        if (dueDate.isAfter(returnTime)) {
+            return "Book returned successfully!";
+        }
+        return "Book returned too late!";
     }
 }
