@@ -20,15 +20,17 @@ public class LendingSystem {
 
     public LentBook lend(String isbn, String inss) {
         Book book = bookRepository.getBookByIsbn(isbn);
+        bookAvailabilityCheck(book);
         Member member = memberRepository.getMemberByInss(inss);
-
         LentBook lentBook = new LentBook(Book.newBuilder(book), calculateLendingId(isbn, inss));
-        member.addLentBook(lentBook);
-
         return lendingRepository.addLentBook(member, lentBook);
     }
 
-    private String calculateLendingId(String isbn, String inss) {
+    private void bookAvailabilityCheck(Book book) throws IllegalArgumentException {
+        if (lendingRepository.isLent(book)) throw new IllegalArgumentException("Book is already lent");
+    }
+
+    public String calculateLendingId(String isbn, String inss) {
         return isbn + inss + LocalDate.now().toString();
     }
 }

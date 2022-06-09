@@ -35,4 +35,54 @@ class BookRepositoryTest {
         //Then
         Assertions.assertEquals(List.of(book), actualResult);
     }
+
+    @Test
+    @DisplayName("Given a repository, when we search a book by isbn null, then we throw an exception")
+    void givenARepositoryWhenWeSearchABookByIsbnNullThenWeThrowAnException() {
+        //Given
+        BookRepository bookRepository = new BookRepository();
+
+        //When
+
+        //Then
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> bookRepository.getBookByIsbn(null));
+    }
+
+    @Test
+    @DisplayName("Given a repository, when we search a book by isbn blank, then we throw an exception")
+    void givenARepositoryWhenWeSearchABookByIsbnBlankThenWeThrowAnException() {
+        //Given
+        BookRepository bookRepository = new BookRepository();
+
+        //When
+
+        //Then
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> bookRepository.getBookByIsbn(""));
+    }
+
+    @Test
+    @DisplayName("Given a repository, when we search a book by isbn that is not in the repository, throw new exception.")
+    void givenARepositoryWhenWeSearchABookByIsbnThatIsNotInTheRepositoryThrowNewException() {
+        //Given
+        BookRepository bookRepository = new BookRepository();
+
+        //When
+
+        //Then
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> bookRepository.getBookByIsbn("54546"));
+    }
+
+    @Test
+    @DisplayName("Given a repository, when we search a book by isbn that is in the repository, then we get that book.")
+    void givenARepositoryWhenWeSearchABookByIsbnThatIsInTheRepositoryThenWeGetThatBook() {
+        //Given
+        BookRepository bookRepository = new BookRepository();
+        bookRepository.addBook(book);
+
+        //When
+        Book actual = bookRepository.getBookByIsbn("978-1-4028-9462-6");
+
+        //Then
+        Assertions.assertEquals(book, actual);
+    }
 }

@@ -3,6 +3,7 @@ package com.carbonaracode.digibookycarbonara.lending;
 import com.carbonaracode.digibookycarbonara.books.Book;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 public class LentBook extends Book {
@@ -30,5 +31,26 @@ public class LentBook extends Book {
 
     public LocalDate getDueDate() {
         return dueDate;
+    }
+
+    @Override
+    public String toString() {
+        return "LentBook{" +
+                "lendingID='" + lendingID + '\'' +
+                ", dueDate=" + dueDate +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LentBook lentBook = (LentBook) o;
+        return lendingID.equals(lentBook.lendingID) && dueDate.equals(lentBook.dueDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lendingID, dueDate);
     }
 }

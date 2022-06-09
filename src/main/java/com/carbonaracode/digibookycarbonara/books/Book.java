@@ -1,5 +1,7 @@
 package com.carbonaracode.digibookycarbonara.books;
 
+import com.carbonaracode.digibookycarbonara.lending.LendingRepository;
+
 public class Book {
     private final String isbn;
     private final String title;
@@ -59,7 +61,6 @@ public class Book {
             return new Book(this);
         }
     }
-
 
     public String getIsbn() {
         return isbn;

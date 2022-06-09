@@ -98,6 +98,5 @@ class MemberTest {
                 .withEmail(null)
                 .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
                 .build());
-
     }
 }

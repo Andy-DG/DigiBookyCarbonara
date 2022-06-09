@@ -1,6 +1,7 @@
 package com.carbonaracode.digibookycarbonara.members;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +15,6 @@ public class Member {
     private final Name name;
     private final String email;
     private final Address address;
-    private List<LentBook> lentBookList;
 
     private Member(MemberBuilder builder) {
         inss = builder.inss;
@@ -95,14 +95,5 @@ public class Member {
                 throw new IllegalArgumentException("INSS cannot be empty!");
             }
         }
-    }
-
-    public LentBook addLentBook(LentBook lentBook) {
-        this.getLentBookList().add(lentBook);
-        return lentBook;
-    }
-
-    public List<LentBook> getLentBookList() {
-        return lentBookList;
     }
 }
