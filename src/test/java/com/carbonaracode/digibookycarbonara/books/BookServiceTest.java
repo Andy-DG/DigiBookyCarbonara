@@ -33,15 +33,16 @@ class BookServiceTest {
 
     @Test
     @DisplayName("Given the id of an existing book, when searching the book, return the book")
-    void givenValidId_WhenSearching_ThenReturnBook(){
-        String bookToFind = "onr12*155*484";
-        BookDTO bookById = bookService.getBookByIsbn(bookToFind);
+    void givenValidId_WhenSearching_ThenReturnBook() {
+        BookDTO bookById = bookService.getBookByIsbn(bookID);
+    }
+
     @Nested
     class SearchBooks{
         @Test
         @DisplayName("Given the id of an existing book, when searching the book, return the book")
         void givenValidId_WhenSearching_ThenReturnBook(){
-            BookDTO bookById = bookService.getBookById(bookID);
+            BookDTO bookById = bookService.getBookByIsbn(bookID);
 
             assertEquals(bookID, bookById.getIsbn());
         }
@@ -51,7 +52,7 @@ class BookServiceTest {
         void givenInValidId_WhenSearching_ThenReturnBook(){
             String bookToFind = "not here";
 
-            assertThrows(IllegalArgumentException.class, ()-> bookService.getBookById(bookToFind));
+            assertThrows(IllegalArgumentException.class, ()-> bookService.getBookByIsbn(bookToFind));
         }
     }
 
@@ -109,8 +110,6 @@ class BookServiceTest {
 
 
     }
-
-
 
 
 }

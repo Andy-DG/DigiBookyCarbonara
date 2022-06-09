@@ -36,7 +36,7 @@ public class BookRepository {
 
 
     public void addBook(Book book) {
-        if(bookMap.containsKey(book.getIsbn())) throw new IllegalArgumentException("Book with ISBN already registered");
+        if(bookMap.containsKey(book.getIsbn())) throw new IllegalArgumentException("Book with ISBN "+ book.getIsbn() +" already registered");
         bookMap.put(book.getIsbn(), book);
     }
 

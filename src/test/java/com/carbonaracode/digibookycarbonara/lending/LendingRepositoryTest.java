@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,6 +21,7 @@ class LendingRepositoryTest {
     @Test
     void givenABookAndAMember_whenMemberBorrowsBook_thenBookIsInLentList() {
         //Given
+        String isbn = UUID.randomUUID().toString();
         Member member = Member.newBuilder()
                 .withInss("666")
                 .withName(new Name("Pablo", "Ijscobar"))
@@ -28,7 +30,7 @@ class LendingRepositoryTest {
                 .build();
 
         Book book = Book.newBuilder()
-                .withIsbn("978-1-4028-9462-6")
+                .withIsbn(isbn)
                 .withTitle("The Phoenix Project")
                 .withAuthor(new Author("Gene", "Kim"))
                 .withSummary("Summary")
@@ -57,8 +59,9 @@ class LendingRepositoryTest {
     @DisplayName("Given a lending repository, when we want to see all lent books for a member, we get a list of all books the member lent")
     void givenALendingRepositoryWhenWeWantToSeeAllLentBooksForAMemberWeGetAListOfAllBooksTheMemberLent() {
         //Given
+        String isbn = UUID.randomUUID().toString();
         Book book = Book.newBuilder()
-                .withIsbn("978-1-4028-9462-6")
+                .withIsbn(isbn)
                 .withTitle("The Phoenix Project")
                 .withAuthor(new Author("Gene", "Kim"))
                 .withSummary("Summary")

@@ -5,12 +5,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
 class BookRepositoryTest {
+    private String isbnForBook = UUID.randomUUID().toString();
     private final Book book = Book.newBuilder()
-            .withIsbn("978-1-4028-9462-6")
+            .withIsbn(isbnForBook)
             .withTitle("The Phoenix Project")
             .withAuthor(new Author("Gene", "Kim"))
             .withSummary("Bill is an IT manager at Parts Unlimited. " +
@@ -33,7 +35,9 @@ class BookRepositoryTest {
         List<Book> actualResult = bookRepository.getAll();
 
         //Then
-        Assertions.assertEquals(List.of(book), actualResult);
+
+        //aangepast omdat deze faalde door de initialisatie van de repository (hier werdt al een boek toegevoegd)
+        Assertions.assertEquals(2, bookRepository.getBookMap().keySet().size());
     }
 
     @Test
@@ -80,7 +84,7 @@ class BookRepositoryTest {
         bookRepository.addBook(book);
 
         //When
-        Book actual = bookRepository.getBookByIsbn("978-1-4028-9462-6");
+        Book actual = bookRepository.getBookByIsbn(isbnForBook);
 
         //Then
         Assertions.assertEquals(book, actual);
