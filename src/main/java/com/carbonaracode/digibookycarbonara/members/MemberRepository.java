@@ -1,5 +1,8 @@
 package com.carbonaracode.digibookycarbonara.members;
 
+import com.carbonaracode.digibookycarbonara.Name;
+import com.carbonaracode.digibookycarbonara.books.Author;
+import com.carbonaracode.digibookycarbonara.books.Book;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -9,11 +12,23 @@ import java.util.logging.Logger;
 
 @Repository
 public class MemberRepository {
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
     private Map<String, Member> memberMap;
 
     public MemberRepository() {
-        this.memberMap = new HashMap<>();
+        this.memberMap = createAndInitializeMemberMap();
+    }
+
+    public Map<String, Member> createAndInitializeMemberMap() {
+        Member member = Member.newBuilder()
+                .withInss("1")
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail("jurgen@jurgen.jurgen")
+                .withAddress(new Address("snowstreet", 1, 1 , "OkayCity"))
+                .build();
+        memberMap = new HashMap<>();
+        memberMap.put(member.getInss(), member);
+        return memberMap;
     }
 
     public Map<String, Member> getMemberMap() {
@@ -23,7 +38,12 @@ public class MemberRepository {
     public Member getMemberByInss(String inss) {
         isNotNull(inss);
         isNotEmpty(inss);
+        doesMemberExist(inss);
         return this.memberMap.get(inss);
+    }
+
+    private void doesMemberExist(String inss) {
+        if (this.memberMap.get(inss) == null) throw new IllegalArgumentException("This member does not exist");
     }
 
     public void register(Member member) throws IllegalArgumentException {

@@ -20,7 +20,7 @@ public class LendingSystem {
         this.memberRepository = memberRepository;
     }
 
-    public LentBook lend(String isbn, String inss) {
+    public LentBook lend(String inss, String isbn) {
         Book book = bookRepository.getBookByIsbn(isbn);
         bookAvailabilityCheck(book);
         Member member = memberRepository.getMemberByInss(inss);
