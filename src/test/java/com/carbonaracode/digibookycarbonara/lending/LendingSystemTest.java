@@ -42,7 +42,7 @@ class LendingSystemTest {
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
 
         //When
-        LentBook expected = new LentBook(Book.newBuilder(book), isbn + LocalDate.now().toString());
+        LentBook expected = new LentBook(Book.newBuilder(book), isbn + "666" + LocalDate.now().toString());
         LentBook actual = lendingSystem.lend(book.getIsbn(), member.getInss());
 
         //Then
