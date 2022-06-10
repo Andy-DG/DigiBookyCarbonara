@@ -84,6 +84,7 @@ class LendingSystemTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> lendingSystem.lend(book.getIsbn(), member.getInss()));
     }
 
+
     @Test
     void givenALentBookAndAUser_whenUserReturnsBook_thenLendingKeyIsNoLongerInLendingMap() {
         //Given
@@ -116,7 +117,7 @@ class LendingSystemTest {
 
         //When
 
-        lendingSystem.returnBook(lendingID,LocalDate.now());
+        lendingSystem.returnBook(lendingID, LocalDate.now());
 
         //Then
         Assertions.assertFalse(lendingRepository.getLendingMap().containsKey(lendingSystem.calculateLendingId(isbn, member.getInss())));
@@ -159,4 +160,59 @@ class LendingSystemTest {
 
     }
 
+    @Test
+    void givenALendingSystemAndInssAndIsbn_whenWeCalculateLendingId_thenCorrectLendingIdIsGenerated() {
+        //Given
+        MemberRepository memberRepository = new MemberRepository();
+        BookRepository bookRepository = new BookRepository();
+        LendingRepository lendingRepository = new LendingRepository();
+        LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
+
+        String inss = "12345";
+        String isbn = "67890";
+        LocalDate now = LocalDate.now();
+        //When
+        String actual = lendingSystem.calculateLendingId(isbn, inss);
+        //Then
+        String expected = "67890$12345$" + now;
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void givenALendingSystemAndALendingID_whenGettingInssFromLendingId_thenReturnInss() {
+        //Given
+        String inss = "12345";
+        String isbn = "67890";
+
+        Book book = Book.newBuilder()
+                .withIsbn(isbn)
+                .withTitle("The Phoenix Project")
+                .withAuthor(new Author("Gene", "Kim"))
+                .withSummary("Summary")
+                .build();
+        Member member = Member.newBuilder()
+                .withInss(inss)
+                .withName(new Name("Pablo", "Ijscobar"))
+                .withEmail("boergor@king.nl")
+                .withAddress(new Address("snowstreet", 1, 1, "OkayCity"))
+                .build();
+        MemberRepository memberRepository = new MemberRepository();
+        BookRepository bookRepository = new BookRepository();
+        LendingRepository lendingRepository = new LendingRepository();
+        LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
+
+        bookRepository.addBook(book);
+        memberRepository.register(member);
+
+        LentBook lentBook = lendingSystem.lend(isbn, inss);
+
+        String lendingId = lentBook.getLendingID();
+        //When
+        String actual = lendingSystem.getInssFromLendingId2(lendingId);
+        //Then
+        String expected = "12345";
+        Assertions.assertEquals(expected, actual);
+
+    }
 }

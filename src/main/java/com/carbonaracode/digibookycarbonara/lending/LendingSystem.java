@@ -42,7 +42,7 @@ public class LendingSystem {
         return isbn + DEFAULT_LENDING_ID_SPLITTER + inss + DEFAULT_LENDING_ID_SPLITTER + LocalDate.now();
     }
 
-    public  void returnBook(String lendingID, LocalDate returnTime) {
+    public void returnBook(String lendingID, LocalDate returnTime) {
         LentBook bookToReturn = lendingRepository.getLendingMap().get(lendingID);
         lendingRepository.returnBook(lendingID);
 
@@ -61,7 +61,7 @@ public class LendingSystem {
 
     public void returnBook(String lendingID) {
         LentBook bookToReturn = lendingRepository.getLendingMap().get(lendingID);
-        Member lendingMember = memberRepository.getMemberByInss(getInssFromLendingId(lendingID));
+        Member lendingMember = memberRepository.getMemberByInss(getInssFromLendingId2(lendingID));
         lendingMember.returnLentBook(bookToReturn);
         lendingRepository.returnBook(lendingID);
         if (isReturnedOnTime(bookToReturn, LocalDate.now())) {
@@ -70,7 +70,14 @@ public class LendingSystem {
         logger.info("Book returned too late!");
     }
 
-    private String getInssFromLendingId(String lendingID) {
+    public String getInssFromLendingId(String lendingID) {
         return lendingID.split(DEFAULT_LENDING_ID_SPLITTER)[1];
+    }
+
+    public String getInssFromLendingId2(String lendingId) {
+        LentBook lentBook = lendingRepository.getLendingMap().get(lendingId);
+        String isbn = lentBook.getIsbn();
+        String inssAndDate = lendingId.replace(isbn, "").replace("$", "");
+        return inssAndDate.substring(0, inssAndDate.length() - 10);
     }
 }
