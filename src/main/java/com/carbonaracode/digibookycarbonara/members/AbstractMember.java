@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class AbstractMember {
+    public static final String OWASP_EMAIL_VALIDATION = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
     private final String inss;
     private final Name name;
     private final String email;
@@ -35,7 +36,7 @@ public abstract class AbstractMember {
         if (email == null) {
             throw new IllegalArgumentException("Email cannot be empty");
         }
-        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
+        Pattern pattern = Pattern.compile(OWASP_EMAIL_VALIDATION);
         Matcher matcher = pattern.matcher(email);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("invalid e-mail format");

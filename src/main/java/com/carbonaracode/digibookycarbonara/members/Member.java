@@ -3,8 +3,6 @@ package com.carbonaracode.digibookycarbonara.members;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import com.carbonaracode.digibookycarbonara.Name;
 import com.carbonaracode.digibookycarbonara.lending.LentBook;
 
@@ -54,7 +52,6 @@ public class Member extends AbstractMember {
         }
 
         public MemberBuilder withInss(String inss) {
-            validateInss(inss);
             this.inss = inss;
             return this;
         }
@@ -65,7 +62,6 @@ public class Member extends AbstractMember {
         }
 
         public MemberBuilder withEmail(String email) {
-            validateEmail(email);
             this.email = email;
             return this;
         }
@@ -79,22 +75,6 @@ public class Member extends AbstractMember {
             return new Member(this);
         }
 
-        private void validateEmail(String email) throws IllegalArgumentException {
-            if (email == null){
-                throw new IllegalArgumentException("Email cannot be empty");
-            }
-            Pattern pattern = Pattern.compile( "^(.+)@(.+)$");
-            Matcher matcher = pattern.matcher(email);
-            if (!matcher.matches()){
-                throw new IllegalArgumentException("invalid e-mail format");
-            }
-        }
-
-        private void validateInss(String inss){
-            if (inss == null || inss.isBlank()){
-                throw new IllegalArgumentException("INSS cannot be empty!");
-            }
-        }
     }
 }
 

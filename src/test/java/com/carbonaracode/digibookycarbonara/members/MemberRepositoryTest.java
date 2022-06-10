@@ -55,7 +55,7 @@ class MemberRepositoryTest {
         Member hal = Member.newBuilder()
                 .withInss("1")
                 .withName(new Name("Hal", "Computer"))
-                .withEmail("hal.computer@hal.computer")
+                .withEmail("hal.computer@hal.co.uk")
                 .withAddress(new Address("Computerstreet", 2, 2, "Compiler City"))
                 .build();
         //When

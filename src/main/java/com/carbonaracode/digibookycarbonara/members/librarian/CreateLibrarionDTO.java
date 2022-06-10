@@ -28,6 +28,6 @@ public class CreateLibrarionDTO {
     }
 
     public String getInss() {
-        return this.getInss();
+        return this.inss;
     }
 }

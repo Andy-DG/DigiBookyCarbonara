@@ -2,6 +2,7 @@ package com.carbonaracode.digibookycarbonara.members;
 
 import com.carbonaracode.digibookycarbonara.Name;
 
+import javax.validation.constraints.Email;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,6 +40,7 @@ public abstract class AbstractMemberDTO {
         if (!matcher.matches()) {
             throw new IllegalArgumentException("invalid e-mail format");
         }
+
     }
 
     private void validateInss(String inss) {
