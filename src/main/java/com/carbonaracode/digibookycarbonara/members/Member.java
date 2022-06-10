@@ -8,19 +8,16 @@ import java.util.regex.Pattern;
 import com.carbonaracode.digibookycarbonara.Name;
 import com.carbonaracode.digibookycarbonara.lending.LentBook;
 
-public class Member {
+public class Member extends AbstractMember {
 //This member should have a unique INSS (social security number), last name, first name, email, street name, street number,
 // postal code and city.
-    private final String inss;
-    private final Name name;
-    private final String email;
+
     private final Address address;
+
     private List<LentBook> lentBookList;
 
     private Member(MemberBuilder builder) {
-        inss = builder.inss;
-        name = builder.name;
-        email = builder.email;
+        super(builder.inss, builder.name, builder.email);
         address = builder.address;
         lentBookList = new ArrayList<>();
     }
@@ -37,24 +34,13 @@ public class Member {
         lentBookList.remove(lentBook);
     }
 
-    public String getInss() {
-        return inss;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
 
     public List<LentBook> getLentBookList() {
         return lentBookList;
+    }
+
+    public Address getAddress() {
+        return this.address;
     }
 
 
@@ -111,3 +97,4 @@ public class Member {
         }
     }
 }
+
