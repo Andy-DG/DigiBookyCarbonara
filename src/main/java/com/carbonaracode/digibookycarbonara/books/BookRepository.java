@@ -1,5 +1,6 @@
 package com.carbonaracode.digibookycarbonara.books;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -77,8 +78,15 @@ public class BookRepository {
     }
 
     public List<Book> searchBooksByIsbn(String isbnPart) {
-        List<Book> bookList =bookMap.values().stream().filter(book -> book.getIsbn().contains(isbnPart)).toList();
-        logger.info(String.valueOf(bookList));
-        return bookList;
+        return bookMap.values().stream().filter(book -> StringUtils.containsIgnoreCase(book.getIsbn(), isbnPart)).toList();
+    }
+
+    public List<Book> searchBooksByTitle(String titlePart) {
+        return bookMap.values().stream().filter(book -> StringUtils.containsIgnoreCase(book.getTitle(), titlePart)).toList();
+    }
+
+    public List<Book> searchBooksByAuthor(String authorNamePart) {
+        return bookMap.values().stream().filter(book -> StringUtils.containsIgnoreCase(book.getAuthor().authorFirstname(), authorNamePart)
+        || StringUtils.containsIgnoreCase(book.getAuthor().authorLastname(), authorNamePart)).toList();
     }
 }

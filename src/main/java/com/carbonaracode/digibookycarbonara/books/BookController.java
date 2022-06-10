@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -41,7 +42,7 @@ public class BookController {
 
     @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public BookDTO registerNewBook(@RequestBody CreateBookDTO createBookDTO){
+    public BookDTO registerNewBook(@RequestBody CreateBookDTO createBookDTO) {
         // NOT IMPLEMENTED (No roles yet)
         // If any other user besides a Librarian tries to register a new book,
         // the server should respond with 403 Forbidden and a custom message.
@@ -59,15 +60,39 @@ public class BookController {
 
     @PostMapping(path = "/{inss}/{isbn}/return", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public void returnBook(@PathVariable String inss,@PathVariable String isbn) {
+    public void returnBook(@PathVariable String inss, @PathVariable String isbn) {
         logger.info("Post called for member " + inss + " to return lent book " + isbn);
         lendingService.returnBook(isbn);
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<Book> searchBooksByIsbn(@RequestParam String isbn) {
-        return bookService.searchBooksByIsbn(isbn);
+    public List<Book> searchBooksByIsbn(@RequestParam(required = false
+    ) String isbn, @RequestParam(required = false)
+                                        String title, @RequestParam(required = false
+    ) String author) {
+        if (isbn != null) {
+            return bookService.searchBooksByIsbn(isbn);
+        }
+        if (title != null) {
+            return bookService.searchBooksByTitle(title);
+        }
+        if (author != null) {
+            return bookService.searchBooksByAuthor(author);
+        }
+        return new ArrayList<>();
     }
+
+//    @GetMapping()
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<Book> searchBooksByTitle(@RequestParam String title) {
+//        return bookService.searchBooksByTitle(title);
+//    }
+//
+//    @GetMapping()
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<Book> searchBooksByAuthor(@RequestParam String author) {
+//        return bookService.searchBooksByAuthor(author);
+//    }
 
 }
