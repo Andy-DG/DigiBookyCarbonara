@@ -30,15 +30,25 @@ public class BookRepository {
                         "The CEO wants Bill to report directly to him and fix the mess in ninety days " +
                         "or else Bill's entire department will be outsourced.\n")
                 .build();
+
+        Book book2 = Book.newBuilder()
+                .withTitle("The Odyssey")
+                .withAuthor(new Author("", "Homer"))
+                .withIsbn("978-0140268867")
+                .withSummary("If the Iliad is the world's greatest war epic, the Odyssey is literature's grandest evocation of an everyman's journey through life. " +
+                        "\n Odysseus' reliance on his wit and wiliness for survival in his encounters with divine and natural forces during his ten-year voyage home to Ithaca after the Trojan War is at once a timeless human story and an individual test of moral endurance. ")
+                .build();
+
         bookMap = new HashMap<>();
         bookMap.put(book1.getIsbn(), book1);
+        bookMap.put(book2.getIsbn(), book2);
         return bookMap;
     }
 
 
-
     public void addBook(Book book) {
-        if(bookMap.containsKey(book.getIsbn())) throw new IllegalArgumentException("Book with ISBN "+ book.getIsbn() +" already registered");
+        if (bookMap.containsKey(book.getIsbn()))
+            throw new IllegalArgumentException("Book with ISBN " + book.getIsbn() + " already registered");
         bookMap.put(book.getIsbn(), book);
     }
 
@@ -54,12 +64,14 @@ public class BookRepository {
     }
 
     private void checkInMap(String isbn) throws IllegalArgumentException {
-        if(!this.bookMap.containsKey(isbn)) throw new IllegalArgumentException("No book with called isbn found " + isbn);
+        if (!this.bookMap.containsKey(isbn))
+            throw new IllegalArgumentException("No book with called isbn found " + isbn);
     }
 
     private void checkNotNull(String id) throws IllegalArgumentException {
-        if(id == null || id.isBlank()) throw new IllegalArgumentException("id cannot be blank or null");
+        if (id == null || id.isBlank()) throw new IllegalArgumentException("id cannot be blank or null");
     }
+
     public Map<String, Book> getBookMap() {
         return bookMap;
     }
