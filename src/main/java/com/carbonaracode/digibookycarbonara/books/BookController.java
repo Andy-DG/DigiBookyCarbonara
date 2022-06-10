@@ -51,9 +51,16 @@ public class BookController {
 
     @PostMapping(path = "/{inss}/{isbn}/lent", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public LentBookDTO LendBook(@PathVariable String inss, @PathVariable String isbn) {
+    public LentBookDTO lendBook(@PathVariable String inss, @PathVariable String isbn) {
         logger.info("Post called to lend to member " + inss + " and book " + isbn);
-        return lendingService.lendBook(inss, isbn);
+        return lendingService.lendBook(isbn, inss);
+    }
+
+    @PostMapping(path = "/{inss}/{isbn}/return", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public void returnBook(@PathVariable String inss,@PathVariable String isbn) {
+        logger.info("Post called for member " + inss + " to return lent book " + isbn);
+        lendingService.returnBook(isbn);
     }
 
 

@@ -7,9 +7,7 @@ import com.carbonaracode.digibookycarbonara.members.MemberRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Component
 public class LendingSystem {
@@ -44,14 +42,17 @@ public class LendingSystem {
         return isbn + DEFAULT_LENDING_ID_SPLITTER + inss + DEFAULT_LENDING_ID_SPLITTER + LocalDate.now();
     }
 
-    public void returnBook(String lendingID, LocalDate returnTime) {
+    public  void returnBook(String lendingID, LocalDate returnTime) {
         LentBook bookToReturn = lendingRepository.getLendingMap().get(lendingID);
         lendingRepository.returnBook(lendingID);
+
 
         if (isReturnedOnTime(bookToReturn, returnTime)) {
             logger.info("Book returned successfully!");
         }
+
         logger.info("Book returned too late!");
+
     }
 
     public boolean isReturnedOnTime(LentBook bookToReturn, LocalDate returnTime) {

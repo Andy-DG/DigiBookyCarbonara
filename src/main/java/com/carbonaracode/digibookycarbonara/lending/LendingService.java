@@ -14,10 +14,21 @@ public class LendingService {
         this.lendingSystem = lendingSystem;
     }
 
-    public LentBookDTO lendBook(String inss, String isbn) {
-        LentBook lentBook = lendingSystem.lend(inss, isbn);
+    public LentBookDTO lendBook(String isbn, String inss) {
+        LentBook lentBook = lendingSystem.lend(isbn, inss);
         return lentBookMapper.toDTO(lentBook);
     }
+
+    public void returnBook(String isbn) {
+        String lendingId = getLendingIdByIsbn(isbn);
+        lendingSystem.returnBook(lendingId);
+    }
+
+    public String getLendingIdByIsbn(String lentBookIsbn){
+        return lendingRepository.getLendingMap().values().stream()
+                .filter(lentBook -> lentBook.getIsbn().equals(lentBookIsbn)).findFirst().get().getLendingID();
+    }
+
 
 
 }

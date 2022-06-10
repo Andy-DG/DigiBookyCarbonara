@@ -32,6 +32,7 @@ public class LendingRepository {
     }
 
     public void returnBook(String lendingId) {
+
         lendingMap.remove(lendingId);
     }
 }
