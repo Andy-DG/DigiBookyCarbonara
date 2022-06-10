@@ -42,8 +42,8 @@ class LendingSystemTest {
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
 
         //When
-        LentBook expected = new LentBook(Book.newBuilder(book), isbn + "666" + LocalDate.now().toString());
-        LentBook actual = lendingSystem.lend(member.getInss(), book.getIsbn());
+        LentBook expected = new LentBook(Book.newBuilder(book), isbn + "$666$" + LocalDate.now().toString());
+        LentBook actual = lendingSystem.lend(book.getIsbn(), member.getInss());
 
         //Then
         Assertions.assertEquals(expected, actual);
@@ -85,7 +85,7 @@ class LendingSystemTest {
     }
 
     @Test
-    void givenALentBookAndAUser_whenUserReturnsBook_thenBookIsNoLongerInLendingList() {
+    void givenALentBookAndAUser_whenUserReturnsBook_thenLendingKeyIsNoLongerInLendingMap() {
         //Given
         String isbn = "7777";
         Member member = Member.newBuilder()
@@ -101,6 +101,7 @@ class LendingSystemTest {
                 .withAuthor(new Author("Gene", "Kim"))
                 .withSummary("Summary")
                 .build();
+
         MemberRepository memberRepository = new MemberRepository();
         memberRepository.register(member);
         BookRepository bookRepository = new BookRepository();
@@ -115,10 +116,10 @@ class LendingSystemTest {
 
         //When
 
-        lendingSystem.returnBook(lendingID,member,LocalDate.now());
+        lendingSystem.returnBook(lendingID,LocalDate.now());
 
         //Then
-        Assertions.assertFalse(lendingRepository.getLendingMap().get(member).contains(bookToReturn));
+        Assertions.assertFalse(lendingRepository.getLendingMap().containsKey(lendingSystem.calculateLendingId(isbn, member.getInss())));
 
     }
 
@@ -150,10 +151,11 @@ class LendingSystemTest {
         String lendingID = lendingSystem.lend(isbn, member.getInss()).getLendingID();
         //When
         LocalDate returnTime = LocalDate.now().plusWeeks(4);
-        String actual = lendingSystem.returnBook(lendingID,member,returnTime);
+        LentBook bookToReturn = lendingRepository.getLendingMap().get(lendingID);
+        boolean actual = lendingSystem.isReturnedOnTime(bookToReturn, returnTime);
 
         //Then
-        Assertions.assertEquals("Book returned too late!",actual);
+        Assertions.assertFalse(actual);
 
     }
 

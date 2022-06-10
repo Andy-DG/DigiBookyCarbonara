@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LendingRepositoryTest {
     @Test
-    void givenABookAndAMember_whenMemberBorrowsBook_thenBookIsInLentList() {
+    void givenABookAndAMember_whenMemberBorrowsBook_thenBookIsInLentListOfMember() {
         //Given
         String isbn = UUID.randomUUID().toString();
         Member member = Member.newBuilder()
@@ -45,11 +45,11 @@ class LendingRepositoryTest {
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
 
         //When
-        LentBook lentBook = lendingSystem.lend(member.getInss(), book.getIsbn());
+        LentBook lentBook = lendingSystem.lend(book.getIsbn(), member.getInss());
 
         //Then
-        Map<Member, List<LentBook>> lendingMap = lendingRepository.getLendingMap();
-        List<LentBook> lentBooks = lendingMap.get(member);
+        Map<String, LentBook> lendingMap = lendingRepository.getLendingMap();
+        List<LentBook> lentBooks = member.getLentBookList();
 
 
         assertTrue(lentBooks.contains(lentBook));
@@ -79,10 +79,10 @@ class LendingRepositoryTest {
         LendingRepository lendingRepository = new LendingRepository();
 
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
-        lendingSystem.lend(member.getInss(), book.getIsbn());
+        lendingSystem.lend(book.getIsbn(), member.getInss());
 
         //When
-        List<LentBook> actual = lendingRepository.getLentBookList(member);
+        List<LentBook> actual = member.getLentBookList();
 
         //Then
         List<LentBook> expected = List.of(new LentBook(Book.newBuilder(book), lendingSystem.calculateLendingId(book.getIsbn(), member.getInss())));
@@ -107,7 +107,7 @@ class LendingRepositoryTest {
         LendingSystem lendingSystem = new LendingSystem(memberRepository, bookRepository, lendingRepository);
 
         //When
-        List<LentBook> actual = lendingRepository.getLentBookList(member);
+        List<LentBook> actual = member.getLentBookList();
 
         //Then
         List<LentBook> expected = new ArrayList<>();

@@ -15,16 +15,26 @@ public class Member {
     private final Name name;
     private final String email;
     private final Address address;
+    private List<LentBook> lentBookList;
 
     private Member(MemberBuilder builder) {
         inss = builder.inss;
         name = builder.name;
         email = builder.email;
         address = builder.address;
+        lentBookList = new ArrayList<>();
     }
 
     public static MemberBuilder newBuilder() {
         return new MemberBuilder();
+    }
+
+    public void addLentBook(LentBook lentBook) {
+        lentBookList.add(lentBook);
+    }
+
+    public void returnLentBook(LentBook lentBook) {
+        lentBookList.remove(lentBook);
     }
 
     public String getInss() {
@@ -41,6 +51,10 @@ public class Member {
 
     public Address getAddress() {
         return address;
+    }
+
+    public List<LentBook> getLentBookList() {
+        return lentBookList;
     }
 
 
