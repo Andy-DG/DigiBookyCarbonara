@@ -208,8 +208,9 @@ class LendingSystemTest {
         LentBook lentBook = lendingSystem.lend(isbn, inss);
 
         String lendingId = lentBook.getLendingID();
+        System.out.println(lendingId);
         //When
-        String actual = lendingSystem.getInssFromLendingId2(lendingId);
+        String actual = lendingSystem.getInssFromLendingId(lendingId);
         //Then
         String expected = "12345";
         Assertions.assertEquals(expected, actual);

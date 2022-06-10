@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class LendingSystem {
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private static final String DEFAULT_LENDING_ID_SPLITTER = "$";
+    private static final String DEFAULT_LENDING_ID_SPLITTER = "\\$";
 
     private BookRepository bookRepository;
     private MemberRepository memberRepository;
@@ -61,7 +61,7 @@ public class LendingSystem {
 
     public void returnBook(String lendingID) {
         LentBook bookToReturn = lendingRepository.getLendingMap().get(lendingID);
-        Member lendingMember = memberRepository.getMemberByInss(getInssFromLendingId2(lendingID));
+        Member lendingMember = memberRepository.getMemberByInss(getInssFromLendingId(lendingID));
         lendingMember.returnLentBook(bookToReturn);
         lendingRepository.returnBook(lendingID);
         if (isReturnedOnTime(bookToReturn, LocalDate.now())) {
@@ -74,10 +74,5 @@ public class LendingSystem {
         return lendingID.split(DEFAULT_LENDING_ID_SPLITTER)[1];
     }
 
-    public String getInssFromLendingId2(String lendingId) {
-        LentBook lentBook = lendingRepository.getLendingMap().get(lendingId);
-        String isbn = lentBook.getIsbn();
-        String inssAndDate = lendingId.replace(isbn, "").replace("$", "");
-        return inssAndDate.substring(0, inssAndDate.length() - 10);
-    }
+
 }
