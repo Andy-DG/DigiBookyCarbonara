@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 public class LendingSystem {
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private static final String DEFAULT_LENDING_ID_SPLITTER = "\\$";
+    private static final String DEFAULT_LENDING_ID_SPLITTER = "[$]";
+    private static final String DEFAULT_LENDING_ID_DELIMITER = "$";
 
     private BookRepository bookRepository;
     private MemberRepository memberRepository;
@@ -39,7 +40,7 @@ public class LendingSystem {
     }
 
     public String calculateLendingId(String isbn, String inss) {
-        return isbn + DEFAULT_LENDING_ID_SPLITTER + inss + DEFAULT_LENDING_ID_SPLITTER + LocalDate.now();
+        return isbn + DEFAULT_LENDING_ID_DELIMITER + inss + DEFAULT_LENDING_ID_DELIMITER + LocalDate.now();
     }
 
     public void returnBook(String lendingID, LocalDate returnTime) {

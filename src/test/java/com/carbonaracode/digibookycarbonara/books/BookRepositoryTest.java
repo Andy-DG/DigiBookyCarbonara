@@ -29,6 +29,7 @@ class BookRepositoryTest {
     void givenAMapOfBooksWhenWeRequestAllBooksThenWeGetAListOfAllBooks() {
         //Given
         BookRepository bookRepository = new BookRepository();
+        int defaultNumberOfBooks = bookRepository.getAll().size();
         bookRepository.addBook(book);
 
         //When
@@ -37,7 +38,7 @@ class BookRepositoryTest {
         //Then
 
         //aangepast omdat deze faalde door de initialisatie van de repository (hier werdt al een boek toegevoegd)
-        Assertions.assertEquals(2, bookRepository.getBookMap().keySet().size());
+        Assertions.assertEquals(defaultNumberOfBooks+1, bookRepository.getBookMap().keySet().size());
     }
 
     @Test
