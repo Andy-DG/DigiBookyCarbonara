@@ -30,4 +30,16 @@ public class CreateLibrarionDTO {
     public String getInss() {
         return this.inss;
     }
+
+
+    @Override
+    public String toString() {
+        return "CreateLibrarionDTO{" +
+                "inss='" + inss + '\'' +
+                ", email='" + email + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
