@@ -29,6 +29,4 @@ public class LendingService {
                 .filter(lentBook -> lentBook.getIsbn().equals(lentBookIsbn)).findFirst().get().getLendingID();
     }
 
-
-
 }

@@ -1,5 +1,7 @@
 package com.carbonaracode.digibookycarbonara.books;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -8,7 +10,7 @@ import java.util.Map;
 
 @Repository
 public class BookRepository {
-
+    public static final Logger logger = LoggerFactory.getLogger(BookController.class);
     private Map<String, Book> bookMap;
 
     public BookRepository() {
@@ -60,5 +62,11 @@ public class BookRepository {
     }
     public Map<String, Book> getBookMap() {
         return bookMap;
+    }
+
+    public List<Book> searchBooksByIsbn(String isbnPart) {
+        List<Book> bookList =bookMap.values().stream().filter(book -> book.getIsbn().contains(isbnPart)).toList();
+        logger.info(String.valueOf(bookList));
+        return bookList;
     }
 }

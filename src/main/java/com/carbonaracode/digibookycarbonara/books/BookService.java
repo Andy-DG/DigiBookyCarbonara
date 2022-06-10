@@ -53,4 +53,7 @@ public class BookService {
         if(createBookDTO.getCopies() < 0) throw new IllegalArgumentException("Amount of copies cannot be less than zero");
     }
 
+    public List<Book> searchBooksByIsbn(String isbnPart) {
+        return bookRepository.searchBooksByIsbn(isbnPart);
+    }
 }
