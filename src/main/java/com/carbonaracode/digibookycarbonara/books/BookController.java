@@ -24,12 +24,25 @@ public class BookController {
         this.bookService = bookService;
         this.lendingService = lendingService;
     }
+
     @PreAuthorize("hasAuthority('VIEW_ALL_BOOKS')")
-    @GetMapping(produces = "application/json")
-    public List<BookDTO> getAllBooks() {
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDTO> searchBooksByIsbn(@RequestParam(required = false
+    ) String isbn, @RequestParam(required = false)
+                                           String title, @RequestParam(required = false
+    ) String author) {
+        if (isbn != null) {
+            return bookService.searchBooksByIsbn(isbn);
+        }
+        if (title != null) {
+            return bookService.searchBooksByTitle(title);
+        }
+        if (author != null) {
+            return bookService.searchBooksByAuthor(author);
+        }
         return bookService.getAllBooks();
     }
-
 
 
     @GetMapping(path = "/{isbn}", produces = "application/json")
@@ -66,23 +79,6 @@ public class BookController {
         lendingService.returnBook(isbn);
     }
 
-    @GetMapping()
-    @ResponseStatus(HttpStatus.OK)
-    public List<Book> searchBooksByIsbn(@RequestParam(required = false
-    ) String isbn, @RequestParam(required = false)
-                                        String title, @RequestParam(required = false
-    ) String author) {
-        if (isbn != null) {
-            return bookService.searchBooksByIsbn(isbn);
-        }
-        if (title != null) {
-            return bookService.searchBooksByTitle(title);
-        }
-        if (author != null) {
-            return bookService.searchBooksByAuthor(author);
-        }
-        return new ArrayList<>();
-    }
 
 //    @GetMapping()
 //    @ResponseStatus(HttpStatus.OK)

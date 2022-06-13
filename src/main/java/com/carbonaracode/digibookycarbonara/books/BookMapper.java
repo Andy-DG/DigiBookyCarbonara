@@ -31,4 +31,5 @@ public class BookMapper {
     public List<BookDTO> toDTO(List<Book> bookList) {
         return bookList.stream().map(this::toDTO).toList();
     }
+
 }
