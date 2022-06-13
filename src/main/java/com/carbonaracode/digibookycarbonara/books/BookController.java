@@ -44,7 +44,7 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-
+    @PreAuthorize("hasAuthority('VIEW_ALL_BOOKS')")
     @GetMapping(path = "/{isbn}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public BookDTO getBookDetailByIsbn(@PathVariable String isbn) {
@@ -54,6 +54,7 @@ public class BookController {
         return bookByIsbn;
     }
 
+    @PreAuthorize("hasAuthority('ADD_BOOKS')")
     @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public BookDTO registerNewBook(@RequestBody CreateBookDTO createBookDTO) {
@@ -65,6 +66,7 @@ public class BookController {
         return this.bookService.registerNewBook(createBookDTO);
     }
 
+    @PreAuthorize("hasAuthority('LEND_BOOK')")
     @PostMapping(path = "/{inss}/{isbn}/lent", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public LentBookDTO lendBook(@PathVariable String inss, @PathVariable String isbn) {
@@ -72,24 +74,11 @@ public class BookController {
         return lendingService.lendBook(isbn, inss);
     }
 
+    @PreAuthorize("hasAuthority('RETURN_BOOK')")
     @PostMapping(path = "/{inss}/{isbn}/return", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public void returnBook(@PathVariable String inss, @PathVariable String isbn) {
         logger.info("Post called for member " + inss + " to return lent book " + isbn);
         lendingService.returnBook(isbn);
     }
-
-
-//    @GetMapping()
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Book> searchBooksByTitle(@RequestParam String title) {
-//        return bookService.searchBooksByTitle(title);
-//    }
-//
-//    @GetMapping()
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Book> searchBooksByAuthor(@RequestParam String author) {
-//        return bookService.searchBooksByAuthor(author);
-//    }
-
 }
