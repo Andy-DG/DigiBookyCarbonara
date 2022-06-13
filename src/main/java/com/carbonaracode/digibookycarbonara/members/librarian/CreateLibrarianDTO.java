@@ -1,9 +1,9 @@
 package com.carbonaracode.digibookycarbonara.members.librarian;
 
-public class CreateLibrarionDTO {
+public class CreateLibrarianDTO {
     private final String inss, email, firstname, lastname, password;
 
-    public CreateLibrarionDTO(String inss, String email, String firstname, String lastname, String password) {
+    public CreateLibrarianDTO(String inss, String email, String firstname, String lastname, String password) {
         this.inss = inss;
         this.email = email;
         this.firstname = firstname;

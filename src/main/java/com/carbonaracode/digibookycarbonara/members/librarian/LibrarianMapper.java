@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LibrarianMapper {
-    public Librarian toEntity(CreateLibrarionDTO createLibrarionDTO) {
+    public Librarian toEntity(CreateLibrarianDTO createLibrarianDTO) {
         return new Librarian(
-                createLibrarionDTO.getInss(),
-                new Name(createLibrarionDTO.getFirstname(), createLibrarionDTO.getLastname()),
-                createLibrarionDTO.getEmail()
+                createLibrarianDTO.getInss(),
+                new Name(createLibrarianDTO.getFirstname(), createLibrarianDTO.getLastname()),
+                createLibrarianDTO.getEmail()
                 );
     }
 

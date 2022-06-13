@@ -20,9 +20,9 @@ public class LibrarianController {
     @PreAuthorize("hasAuthority('REGISTER_NEW_LIBRARIAN')")
     @PostMapping(path="/add", consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    LibrarianDTO addLibrarian(@RequestBody CreateLibrarionDTO createLibrarionDTO){
-        logger.info(createLibrarionDTO.toString());
-        return this.librarianService.addLibrarian(createLibrarionDTO);
+    LibrarianDTO addLibrarian(@RequestBody CreateLibrarianDTO createLibrarianDTO){
+        logger.info(createLibrarianDTO.toString());
+        return this.librarianService.addLibrarian(createLibrarianDTO);
     }
 
 

@@ -23,11 +23,11 @@ class LibrarianServiceTest {
     @DisplayName("Given a librarian with proper fields, when registering librarian, then success")
     void givenLibrarianWithProperFields_whenRegistering_thenSuccess() {
         String inss = UUID.randomUUID().toString();
-        CreateLibrarionDTO createLibrarionDTO = new CreateLibrarionDTO(inss, "libr@vox.com", "John", "Doe", "12345pass");
+        CreateLibrarianDTO createLibrarianDTO = new CreateLibrarianDTO(inss, "libr@vox.com", "John", "Doe", "12345pass");
 
-        this.librarianRepository.registerLibrarian(this.librarianMapper.toEntity(createLibrarionDTO));
+        this.librarianRepository.registerLibrarian(this.librarianMapper.toEntity(createLibrarianDTO));
 
-        assertTrue(this.librarianRepository.getMap().containsKey(createLibrarionDTO.getInss()));
+        assertTrue(this.librarianRepository.getMap().containsKey(createLibrarianDTO.getInss()));
     }
 
 
@@ -35,27 +35,27 @@ class LibrarianServiceTest {
     @DisplayName("Given two librarian with proper fields but same isnn, when registering, then exception")
     void givenTwoLibrarianWithSameIsnn_whenRegistering_throwException() {
         String inss = UUID.randomUUID().toString();
-        CreateLibrarionDTO createLibrarionDTO = new CreateLibrarionDTO(inss, "libr@vox.com", "John", "Doe", "12345pass");
-        CreateLibrarionDTO createLibrarionDTO2 = new CreateLibrarionDTO(inss, "frr@vox.com", "Fred", "Mex", "54321wordup");
+        CreateLibrarianDTO createLibrarianDTO = new CreateLibrarianDTO(inss, "libr@vox.com", "John", "Doe", "12345pass");
+        CreateLibrarianDTO createLibrarianDTO2 = new CreateLibrarianDTO(inss, "frr@vox.com", "Fred", "Mex", "54321wordup");
 
-        this.librarianRepository.registerLibrarian(this.librarianMapper.toEntity(createLibrarionDTO));
+        this.librarianRepository.registerLibrarian(this.librarianMapper.toEntity(createLibrarianDTO));
 
-        assertThrows(IllegalArgumentException.class, ()-> this.librarianRepository.registerLibrarian(this.librarianMapper.toEntity((createLibrarionDTO2))));
+        assertThrows(IllegalArgumentException.class, ()-> this.librarianRepository.registerLibrarian(this.librarianMapper.toEntity((createLibrarianDTO2))));
     }
 
     @Test
     @DisplayName("When creating a librarian with no inss, throw Exception")
     void whenCreatingLibrarianWithNoInss_throwException() {
-        CreateLibrarionDTO createLibrarionDTO = new CreateLibrarionDTO(" ", "libr@vox.com", "John", "Doe", "12345pass");
-        assertThrows(IllegalArgumentException.class, ()-> this.librarianMapper.toEntity(createLibrarionDTO));
+        CreateLibrarianDTO createLibrarianDTO = new CreateLibrarianDTO(" ", "libr@vox.com", "John", "Doe", "12345pass");
+        assertThrows(IllegalArgumentException.class, ()-> this.librarianMapper.toEntity(createLibrarianDTO));
     }
 
     @Test
     @DisplayName("When creating a librarian with bad email, throw Exception")
     void whenCreatingLibrarianWithbadEmail_throwException() {
         String inss = UUID.randomUUID().toString();
-        CreateLibrarionDTO createLibrarionDTO = new CreateLibrarionDTO(inss, "john@gmail", "John", "Doe", "12345pass");
-        assertThrows(IllegalArgumentException.class, ()-> this.librarianMapper.toEntity(createLibrarionDTO));
+        CreateLibrarianDTO createLibrarianDTO = new CreateLibrarianDTO(inss, "john@gmail", "John", "Doe", "12345pass");
+        assertThrows(IllegalArgumentException.class, ()-> this.librarianMapper.toEntity(createLibrarianDTO));
     }
 
 }
