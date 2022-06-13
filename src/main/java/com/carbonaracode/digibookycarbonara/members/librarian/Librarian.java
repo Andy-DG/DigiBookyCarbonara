@@ -12,7 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Librarian extends AbstractMember {
-
     public Librarian(String inss, Name name, String email) {
         super(inss, name, email);
     }
