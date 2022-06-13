@@ -29,10 +29,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/swagger-resources/**",
                 "/configuration/security",
                 "/swagger-ui/**",
+                "/members/**",
+                "/librarians/add/**",
                 "/swagger*/**",
                 "/v3/api-docs/**",
-                "/webjars/**",
-                "/members/**");
+                "/webjars/**");
     }
 
     private JwtAuthenticationConverter jwtAuthenticationConverter() {

@@ -44,12 +44,13 @@ public class MemberRepository {
         if (this.memberMap.get(inss) == null) throw new IllegalArgumentException("This member does not exist");
     }
 
-    public void register(Member member) throws IllegalArgumentException {
+    public Member register(Member member) throws IllegalArgumentException {
         isNotNull(member);
         validateInss(member);
         validateEmail(member);
         memberMap.put(member.getInss(),member);
         logger.info( member + " is registered.");
+        return member;
     }
 
     private void validateEmail(Member member) {

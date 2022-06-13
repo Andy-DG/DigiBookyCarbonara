@@ -20,9 +20,9 @@ public class MemberService {
         this.keycloakService = keycloakService;
     }
 
-    public void registerNewMember(MemberDTO memberDto) {
+    public Member registerNewMember(MemberDTO memberDto) {
         Member member = this.memberMapper.memberDtoToMember(memberDto);
-        this.memberRepository.register(member);
+        return this.memberRepository.register(member);
 //        keycloakService.addUser(new KeycloakUserDTO(memberDto.getName().getLastName(),memberDto.getEmail(), Role.MEMBER));
     }
 }
