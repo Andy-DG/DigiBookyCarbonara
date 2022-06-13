@@ -28,10 +28,7 @@ public class BookController {
     @PreAuthorize("hasAuthority('VIEW_ALL_BOOKS')")
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<BookDTO> searchBooksByIsbn(@RequestParam(required = false
-    ) String isbn, @RequestParam(required = false)
-                                           String title, @RequestParam(required = false
-    ) String author) {
+    public List<BookDTO> searchBooksByIsbn(@RequestParam(required = false) String isbn, @RequestParam(required = false) String title, @RequestParam(required = false) String author) {
         if (isbn != null) {
             return bookService.searchBooksByIsbn(isbn);
         }
