@@ -21,7 +21,7 @@ public class LibrarianService {
     LibrarianDTO addLibrarian(CreateLibrarianDTO createLibrarianDTO){
         Librarian librarian = librarianMapper.toEntity(createLibrarianDTO);
         librarianRepository.registerLibrarian(librarian);
-        keycloakService.addUser(new KeycloakUserDTO(createLibrarianDTO.getLastname(),createLibrarianDTO.getPassword(), Role.LIBRARIAN));
+//        keycloakService.addUser(new KeycloakUserDTO(createLibrarianDTO.getLastname(),createLibrarianDTO.getPassword(), Role.LIBRARIAN));
         return librarianMapper.toDTO(librarian);
     }
 

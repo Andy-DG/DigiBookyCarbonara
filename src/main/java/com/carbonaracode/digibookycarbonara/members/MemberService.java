@@ -23,6 +23,6 @@ public class MemberService {
     public void registerNewMember(MemberDTO memberDto) {
         Member member = this.memberMapper.memberDtoToMember(memberDto);
         this.memberRepository.register(member);
-        keycloakService.addUser(new KeycloakUserDTO(memberDto.getName().getLastName(),memberDto.getEmail(), Role.MEMBER));
+//        keycloakService.addUser(new KeycloakUserDTO(memberDto.getName().getLastName(),memberDto.getEmail(), Role.MEMBER));
     }
 }
