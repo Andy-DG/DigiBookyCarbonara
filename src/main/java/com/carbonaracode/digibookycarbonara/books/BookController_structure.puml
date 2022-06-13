@@ -1,0 +1,519 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.carbonaracode.digibookycarbonara.books.BookController",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+
+
+'nodes
+subgraph cluster_1196949968 {
+   	label=carbonaracode
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+
+   subgraph cluster_1776094584 {
+   	label=digibookycarbonara
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+
+   AbstractMember1296305264[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AbstractMember</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   email: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inss: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: Name [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- validateEmail(email: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- validateInss(inss: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Address1296305264[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Address</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   city: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   postalCode: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   streetName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   streetNumber: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- stringIsNotEmptyOrNull(string: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Author1398452287[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Author</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   authorFirstname: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   authorLastname: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ authorFirstname(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ authorLastname(): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Book1398452287[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Book</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   author: Author [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isbn: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   summary: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   title: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ newBuilder(): BookBuilder</TD></TR>
+<TR><TD ALIGN="LEFT" >+ newBuilder(book: Book): BookBuilder</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BookBuilder1923921642[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BookBuilder</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   author: Author [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isbn: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   summary: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   title: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ build(): Book</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BookController1398452287[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BookController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   bookService: BookService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lendingService: LendingService [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getBookDetailByIsbn(isbn: String): BookDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ lendBook(inss: String, isbn: String): LentBookDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ registerNewBook(createBookDTO: CreateBookDTO): BookDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ returnBook(inss: String, isbn: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchBooksByIsbn(isbn: String, title: String, author: String): List&lt;BookDTO&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BookDTO1398452287[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BookDTO</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   authorFirstname: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   authorLastname: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isbn: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   summary: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   title: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ retrieveAuthor(): Author</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BookMapper1398452287[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BookMapper</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ toDTO(book: Book): BookDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toDTO(bookList: List&lt;Book&gt;): List&lt;BookDTO&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(bookDTO: BookDTO): Book</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(bookDTO: CreateBookDTO): Book</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BookRepository1398452287[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BookRepository</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   bookMap: Map&lt;String, Book&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addBook(book: Book)</TD></TR>
+<TR><TD ALIGN="LEFT" >- checkInMap(isbn: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- checkNotNull(id: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ createAndInitializeBookMap(): Map&lt;String, Book&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getBookByIsbn(isbn: String): Book</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchBooksByAuthor(authorNamePart: String): List&lt;Book&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchBooksByIsbn(isbnPart: String): List&lt;Book&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchBooksByTitle(titlePart: String): List&lt;Book&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BookService1398452287[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BookService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   bookMapper: BookMapper [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   bookRepository: BookRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- checkAgainstBlankOrNull(in: String...)</TD></TR>
+<TR><TD ALIGN="LEFT" >- checkCopiesLessThanZero(createBookDTO: CreateBookDTO)</TD></TR>
+<TR><TD ALIGN="LEFT" >- checkPriceLessThanZero(createBookDTO: CreateBookDTO)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getBookByIsbn(id: String): BookDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ registerNewBook(createBookDTO: CreateBookDTO): BookDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchBooksByAuthor(author: String): List&lt;BookDTO&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchBooksByIsbn(isbn: String): List&lt;BookDTO&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ searchBooksByTitle(title: String): List&lt;BookDTO&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LendingRepository409788394[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LendingRepository</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   lendingMap: Map&lt;String, LentBook&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addLentBook(lendingId: String, lentBook: LentBook): LentBook</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isLent(book: Book): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ returnBook(lendingId: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LendingService409788394[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LendingService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   lendingRepository: LendingRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lendingSystem: LendingSystem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lentBookMapper: LentBookMapper [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getLendingIdByIsbn(lentBookIsbn: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ lendBook(isbn: String, inss: String): LentBookDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ returnBook(isbn: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LendingSystem409788394[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LendingSystem</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   bookRepository: BookRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lendingRepository: LendingRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   logger: Logger [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   memberRepository: MemberRepository [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- bookAvailabilityCheck(book: Book)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ calculateLendingId(isbn: String, inss: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getInssFromLendingId(lendingID: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isReturnedOnTime(bookToReturn: LentBook, returnTime: LocalDate): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ lend(isbn: String, inss: String): LentBook</TD></TR>
+<TR><TD ALIGN="LEFT" >+ returnBook(lendingID: String, returnTime: LocalDate)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ returnBook(lendingID: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LentBook409788394[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LentBook</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   dueDate: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lendingID: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- calculateDueDate(): LocalDate</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LentBookDTO409788394[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LentBookDTO</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   authorFirstname: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   authorLastname: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   dueDate: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isbn: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lendingID: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   summary: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   title: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ retrieveAuthor(): Author</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LentBookMapper409788394[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LentBookMapper</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ toDTO(lentBook: LentBook): LentBookDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toDTO(lentBookList: List&lt;LentBook&gt;): List&lt;LentBookDTO&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toEntity(lentBookDTO: LentBookDTO): LentBook</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Librarian2052539930[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Librarian</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Member1296305264[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Member</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   address: Address [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lentBookList: List&lt;LentBook&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addLentBook(lentBook: LentBook)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ newBuilder(): MemberBuilder</TD></TR>
+<TR><TD ALIGN="LEFT" >+ returnLentBook(lentBook: LentBook)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MemberBuilder157299192[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MemberBuilder</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   address: Address [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   email: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inss: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: Name [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ build(): Member</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MemberRepository1296305264[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MemberRepository</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   logger: Logger [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   memberMap: Map&lt;String, Member&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createAndInitializeMemberMap(): Map&lt;String, Member&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- doesMemberExist(inss: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMemberByInss(inss: String): Member</TD></TR>
+<TR><TD ALIGN="LEFT" >- isNotEmpty(inss: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- isNotNull(member: Member)</TD></TR>
+<TR><TD ALIGN="LEFT" >- isNotNull(inss: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ register(member: Member)</TD></TR>
+<TR><TD ALIGN="LEFT" >- validateEmail(member: Member)</TD></TR>
+<TR><TD ALIGN="LEFT" >- validateInss(member: Member)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Name1718269883[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Name</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   firstName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastName: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- validateNameField(name: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+}
+}
+
+'edges
+AbstractMember1296305264 -> Librarian2052539930[arrowhead=none, arrowtail=empty, dir=both];
+AbstractMember1296305264 -> Member1296305264[arrowhead=none, arrowtail=empty, dir=both];
+AbstractMember1296305264 -> Name1718269883[label="name
+[0..1]"];
+Book1398452287 -> Author1398452287[label="author
+[0..1]"];
+Book1398452287 -> LentBook409788394[arrowhead=none, arrowtail=empty, dir=both];
+BookBuilder1923921642 -> Author1398452287[label="author
+[0..1]"];
+BookController1398452287 -> BookService1398452287[label="bookService
+[0..1]"];
+BookController1398452287 -> LendingService409788394[label="lendingService
+[0..1]"];
+BookMapper1398452287 -> BookDTO1398452287[label="toEntity() -> retrieveAuthor()"];
+BookRepository1398452287 -> Book1398452287[label="bookMap
+[0..*]"];
+BookService1398452287 -> BookMapper1398452287[label="bookMapper
+[0..1]"];
+BookService1398452287 -> BookRepository1398452287[label="bookRepository
+[0..1]"];
+LendingRepository409788394 -> LentBook409788394[label="lendingMap
+[0..*]"];
+LendingService409788394 -> LendingRepository409788394[label="lendingRepository
+[0..1]"];
+LendingService409788394 -> LendingSystem409788394[label="lendingSystem
+[0..1]"];
+LendingService409788394 -> LentBookMapper409788394[label="lentBookMapper
+[0..1]"];
+LendingSystem409788394 -> Book1398452287[label="lend() -> newBuilder()"];
+LendingSystem409788394 -> BookRepository1398452287[label="bookRepository
+[0..1]"];
+LendingSystem409788394 -> LendingRepository409788394[label="lendingRepository
+[0..1]"];
+LendingSystem409788394 -> MemberRepository1296305264[label="memberRepository
+[0..1]"];
+LentBookMapper409788394 -> Book1398452287[label="toEntity() -> newBuilder()"];
+LentBookMapper409788394 -> LentBookDTO409788394[label="toEntity() -> retrieveAuthor()"];
+Member1296305264 -> Address1296305264[label="address
+[0..1]"];
+Member1296305264 -> LentBook409788394[label="lentBookList
+[0..*]"];
+MemberBuilder157299192 -> Address1296305264[label="address
+[0..1]"];
+MemberBuilder157299192 -> Name1718269883[label="name
+[0..1]"];
+MemberRepository1296305264 -> Member1296305264[label="memberMap
+[0..*]"];
+MemberRepository1296305264 -> MemberBuilder157299192[label="createAndInitializeMemberMap() -> build()"];
+
+}
+@enduml
