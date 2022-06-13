@@ -1,5 +1,6 @@
 package com.carbonaracode.digibookycarbonara.members;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,7 +12,6 @@ public class MemberController {
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
-
     @PostMapping(consumes = "application/json", produces = "application/json")
     public MemberDTO registerNewMember(@RequestBody MemberDTO memberDto){
         this.memberService.registerNewMember(memberDto);
