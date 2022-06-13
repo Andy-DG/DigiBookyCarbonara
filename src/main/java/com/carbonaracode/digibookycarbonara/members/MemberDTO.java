@@ -2,9 +2,6 @@ package com.carbonaracode.digibookycarbonara.members;
 
 import com.carbonaracode.digibookycarbonara.Name;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class MemberDTO extends AbstractMemberDTO{
     private final Address address;
 

@@ -2,7 +2,6 @@ package com.carbonaracode.digibookycarbonara.members;
 
 import com.carbonaracode.digibookycarbonara.Name;
 
-import javax.validation.constraints.Email;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

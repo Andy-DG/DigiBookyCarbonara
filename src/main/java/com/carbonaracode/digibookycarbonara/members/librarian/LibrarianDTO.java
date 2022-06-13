@@ -2,8 +2,6 @@ package com.carbonaracode.digibookycarbonara.members.librarian;
 
 import com.carbonaracode.digibookycarbonara.Name;
 import com.carbonaracode.digibookycarbonara.members.AbstractMemberDTO;
-import com.carbonaracode.digibookycarbonara.members.Address;
-import com.carbonaracode.digibookycarbonara.members.MemberDTO;
 
 public class LibrarianDTO extends AbstractMemberDTO {
 

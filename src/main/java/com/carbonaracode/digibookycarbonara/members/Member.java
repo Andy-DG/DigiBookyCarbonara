@@ -1,10 +1,11 @@
 package com.carbonaracode.digibookycarbonara.members;
 
 
-import java.util.ArrayList;
-import java.util.List;
 import com.carbonaracode.digibookycarbonara.Name;
 import com.carbonaracode.digibookycarbonara.lending.LentBook;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Member extends AbstractMember {
 //This member should have a unique INSS (social security number), last name, first name, email, street name, street number,

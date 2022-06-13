@@ -1,10 +1,11 @@
 package com.carbonaracode.digibookycarbonara.lending;
 
 import com.carbonaracode.digibookycarbonara.books.Book;
-import com.carbonaracode.digibookycarbonara.members.Member;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class LendingRepository {

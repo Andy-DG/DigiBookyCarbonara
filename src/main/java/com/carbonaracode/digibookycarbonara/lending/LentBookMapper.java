@@ -1,7 +1,6 @@
 package com.carbonaracode.digibookycarbonara.lending;
 
 import com.carbonaracode.digibookycarbonara.books.Book;
-import com.carbonaracode.digibookycarbonara.books.BookDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -1,11 +1,9 @@
 package com.carbonaracode.digibookycarbonara.lending;
 
 import com.carbonaracode.digibookycarbonara.books.Book;
-import com.carbonaracode.digibookycarbonara.members.Member;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.UUID;
 
 public class LentBook extends Book {
 

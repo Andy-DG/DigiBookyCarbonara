@@ -1,8 +1,6 @@
 package com.carbonaracode.digibookycarbonara.members;
 
 import com.carbonaracode.digibookycarbonara.Name;
-import com.carbonaracode.digibookycarbonara.books.Author;
-import com.carbonaracode.digibookycarbonara.books.Book;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
